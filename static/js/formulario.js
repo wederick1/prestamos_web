@@ -129,7 +129,14 @@ window.addEventListener('DOMContentLoaded', function () {
     if (form) {
         form.addEventListener('submit', async (e) => {
             e.preventDefault();
-
+    
+            // Deshabilitar el botón para evitar múltiples envíos
+            const btnSiguiente = document.getElementById('btnSiguiente');
+            if (btnSiguiente) {
+                btnSiguiente.disabled = true;
+                btnSiguiente.textContent = 'Procesando...'; // Cambiar el texto del botón opcionalmente
+            }
+    
             // Validar campos requeridos
             const camposRequeridos = Array.from(form.querySelectorAll('[required]'));
             let valido = true;
@@ -140,9 +147,15 @@ window.addEventListener('DOMContentLoaded', function () {
                     setTimeout(() => campo.classList.remove('campo-invalido'), 2000);
                 }
             });
-
-            if (!valido) return notyf.error('Complete todos los campos requeridos');
-
+    
+            if (!valido) {
+                if (btnSiguiente) {
+                    btnSiguiente.disabled = false;
+                    btnSiguiente.textContent = 'Siguiente'; // Restaurar el texto del botón
+                }
+                return notyf.error('Complete todos los campos requeridos');
+            }
+    
             // Recolectar datos
             const formData = new FormData(form);
             const datos = {};
@@ -156,9 +169,9 @@ window.addEventListener('DOMContentLoaded', function () {
                     datos[claveNormalizada] = value;
                 }
             }
-
+    
             datos['fecha_solicitud'] = fechaInputHidden?.value || '';
-
+    
             // Convertir campos numéricos
             const camposNumericos = [
                 'monto_solicitado',
@@ -170,22 +183,26 @@ window.addEventListener('DOMContentLoaded', function () {
             camposNumericos.forEach((campo) => {
                 datos[campo] = parseFloat(datos[campo] || 0);
             });
-
+    
             try {
                 const respuesta = await fetch('/formulario', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify(datos),
                 });
-
+    
                 const resultado = await respuesta.json();
                 if (!respuesta.ok) throw new Error(resultado.error || 'Error en el servidor');
-
+    
                 if (resultado.redirect) {
                     window.location.href = resultado.redirect;
                 }
             } catch (error) {
                 console.error('Error:', error);
+                if (btnSiguiente) {
+                    btnSiguiente.disabled = false;
+                    btnSiguiente.textContent = 'Siguiente'; // Restaurar el texto del botón en caso de error
+                }
             }
         });
     }
