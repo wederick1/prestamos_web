@@ -17,7 +17,6 @@ def formulario():
                 return jsonify({'success': False, 'error': 'El contenido no es JSON'}), 415
 
             datos = request.get_json()
-            print(datos)  # Para depuración
 
             # Validar campos requeridos
             campos_requeridos = ['nombre_solicitante', 'telefono_solicitante', 'correo', 'monto_solicitado', 'firmaDigital']
@@ -323,6 +322,7 @@ def formulario():
                                 <label>Teléfono 1:</label>
                                 <span>{{ datos['telefono_referencia_personal_1'] }}</span>
                             </div>
+                            <div class="info-cliente">
                             <div class="campo">
                                 <label>Nombre 2:</label>
                                 <span>{{ datos['nombre_referencia_personal_2'] }}</span>
@@ -330,6 +330,7 @@ def formulario():
                             <div class="campo">
                                 <label>Teléfono 2:</label>
                                 <span>{{ datos['telefono_referencia_personal_2'] }}</span>
+                            </div>
                             </div>
                         </div>
                     </div>
@@ -346,6 +347,7 @@ def formulario():
                                 <label>Teléfono:</label>
                                 <span>{{ datos['telefono_referencia_familiar_1'] }}</span>
                             </div>
+                            <div class="info-cliente">
                             <div class="campo">
                                 <label>Nombre:</label>
                                 <span>{{ datos['nombre_referencia_familiar_2'] }}</span>
@@ -353,6 +355,7 @@ def formulario():
                             <div class="campo">
                                 <label>Teléfono:</label>
                                 <span>{{ datos['telefono_referencia_familiar_2'] }}</span>
+                            </div>
                             </div>
                         </div>
                     </div>
@@ -454,7 +457,7 @@ def formulario():
                             ocupacion,
                             cedula,
                             tiempo_empresa,
-                            otros_ingresos,
+                            otros_ingresos,         # << Campo que faltaba mapear
                             estado_civil,
                             celular_conyuge,
                             trabajo_conyuge,
@@ -463,10 +466,10 @@ def formulario():
                             lugar_vivienda,
                             ubicacion_trabajo,
                             telefono_trabajo,
-                            pago_renta,
-                            gastos_mensuales,
+                            pago_renta,            # << Campo único (no repetido)
+                            gastos_mensuales,       # << Antes tenía valor de pago_renta
                             horario_trabajo,
-                            ingresos_mensuales,
+                            ingresos_mensuales,     # << Antes tenía valor de pago_renta
                             total_ingresos,
                             conyuge,
                             direccion_trabajo_conyuge,
@@ -485,7 +488,7 @@ def formulario():
                             para_que_necesita,
                             prestamos_activos,
                             banco,
-                            firma_digital
+                            firma_digital           # << Nombre exacto de la columna
                         ) VALUES (
                             %s, %s, %s, %s, %s, %s, %s, %s, %s, %s,
                             %s, %s, %s, %s, %s, %s, %s, %s, %s, %s,
@@ -494,7 +497,7 @@ def formulario():
                             %s, %s, %s
                         )
                     """, (
-                        # Asegúrate de que hay 42 valores aquí:
+                        # Lista de valores corregida (42 elementos, 1 por columna)
                         fecha_solicitud,
                         datos.get('nombre_solicitante'),
                         datos.get('telefono_solicitante'),
@@ -506,7 +509,7 @@ def formulario():
                         datos.get('ocupacion'),
                         datos.get('cedula'),
                         datos.get('tiempo_empresa'),
-                        float(datos.get('pago_renta') or 0),
+                        float(datos.get('otros_ingresos') or 0),  # << Campo corregido
                         datos.get('estado_civil'),
                         datos.get('celular_conyuge'),
                         datos.get('trabajo_conyuge'),
@@ -515,10 +518,10 @@ def formulario():
                         datos.get('lugar_vivienda'),
                         datos.get('ubicacion_trabajo'),
                         datos.get('telefono_trabajo'),
-                        float(datos.get('pago_renta') or 0),
-                        float(datos.get('pago_renta') or 0),
+                        float(datos.get('pago_renta') or 0),      # << Única instancia
+                        float(datos.get('gastos_mensuales') or 0), # << Campo corregido
                         datos.get('horario_trabajo'),
-                        float(datos.get('pago_renta') or 0),
+                        float(datos.get('ingresos_mensuales') or 0), # << Campo corregido
                         datos.get('total_ingresos'),
                         datos.get('conyuge'),
                         datos.get('direccion_trabajo_conyuge'),
@@ -537,7 +540,7 @@ def formulario():
                         datos.get('para_que_necesita'),
                         datos.get('prestamos_activos'),
                         datos.get('banco'),
-                        datos.get('firmaDigital')  # Campo 42
+                        datos.get('firmaDigital')  # << Asegurar que coincide en mayúsculas
                     ))
                 conn.commit()
             finally:
