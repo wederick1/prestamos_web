@@ -43,39 +43,76 @@
                         </select>
                     </div>
                     <div class="campo">
+                        <label for="direccion-solicitante">Dirección del Solicitante:</label>
+                        <input type="text" id="direccion-solicitante" name="direccion-solicitante">
+                    </div>
+                    <div class="campo">
+                        <label for="lugar-vivienda">Lugar donde vive:</label>
+                        <input type="text" id="lugar-vivienda" name="lugar-vivienda">
+                    </div>
+                    <div class="campo">
                         <label for="tiempo-vivienda">Tiempo vivido en el lugar:</label>
                         <input type="text" id="tiempo-vivienda" name="tiempo-vivienda">
                     </div>
                     <div class="campo">
-                        <label for="lugar-trabajo">Lugar de trabajo:</label>
-                        <input type="text" id="lugar-trabajo" name="lugar-trabajo">
-                    </div>
-                    <div class="campo">
                         <label for="tipo-vivienda">Tipo de vivienda:</label>
                         <select id="tipo-vivienda" name="tipo-vivienda">
-                            <option value="rentada">Rentada</option>
                             <option value="propia">Propia</option>
+                            <option value="rentada">Rentada</option>
                         </select>
                     </div>
-                    <div class="campo">
-                        <label for="correo">Correo:</label>
-                        <input type="email" id="correo" name="correo">
+                    <div class="campo"class="campo-renta">
+                        <label for="pago-renta ">Gasto de renta:</label>
+                        <input type="number" id="pago-renta" class="renta" name="pago-renta">
                     </div>
                     <div class="campo">
                         <label for="ocupacion">Oficio Actual:</label>
                         <input type="text" id="ocupacion" name="ocupacion">
                     </div>
                     <div class="campo">
-                        <label>Cédula:</label>
-                        <input type="text" name="cedula" required>
+                        <label for="lugar-trabajo">Lugar de trabajo:</label>
+                        <input type="text" id="lugar-trabajo" name="lugar-trabajo">
+                    </div>
+                    <div class="campo">
+                        <label for="ubicacion-trabajo">Dirección del trabajo:</label>
+                        <input type="text" id="ubicacion-trabajo" name="ubicacion-trabajo">
+                    </div>
+                    <div class="campo">
+                        <label for="horario-trabajo">Horario del trabajo:</label>
+                        <input type="text" id="horario-trabajo" name="horario-trabajo">
+                    </div>
+                    <div class="campo">
+                        <label for="telefono-trabajo">Teléfono Trabajo:</label>
+                        <input type="text" id="telefono-trabajo" name="telefono-trabajo">
                     </div>
                     <div class="campo">
                         <label for="tiempo-empresa">Tiempo en la empresa:</label>
                         <input type="text" id="tiempo-empresa" name="tiempo-empresa">
                     </div>
                     <div class="campo">
+                        <label for="correo">Correo:</label>
+                        <input type="email" id="correo" name="correo">
+                    </div>
+
+                    <div class="campo">
+                        <label>Cédula:</label>
+                        <input type="text" name="cedula" required>
+                    </div>
+                    <div class="campo">
+                        <label for="ingresos-mensuales">Ingresos mensuales:</label>
+                        <input type="number" id="ingresos-mensuales" name="ingresos-mensuales">
+                    </div>
+                    <div class="campo">
                         <label for="otros-ingresos">Otros ingresos:</label>
                         <input type="number" id="otros-ingresos" name="otros-ingresos">
+                    </div>
+                    <div class="campo">
+                        <label for="gastos-mensuales">Gastos mensuales:</label>
+                        <input type="number" id="gastos-mensuales" name="gastos-mensuales">
+                    </div>
+                    <div class="campo">
+                        <label for="total-ingresos">Total ingresos:</label>
+                        <input type="text" id="total-ingresos" name="total-ingresos" readonly>
                     </div>
                     <div class="campo">
                         <label for="estado-civil">Estado civil:</label>
@@ -85,6 +122,10 @@
                         </select>
                     </div>
                     <div class="campo pareja">
+                        <label for="conyuge">Pareja Nombre:</label>
+                        <input type="text" id="conyuge" name="conyuge">
+                    </div>
+                    <div class="campo pareja">
                         <label for="celular-conyuge">Celular Pareja:</label>
                         <input type="text" id="celular-conyuge" name="celular-conyuge">
                     </div>
@@ -92,65 +133,6 @@
                         <label for="trabajo-conyuge">Trabajo Pareja:</label>
                         <input type="text" id="trabajo-conyuge" name="trabajo-conyuge">
                     </div>
-                    <div class="campo">
-                        <label for="dependientes">Dependientes:</label>
-                        <input type="text" id="dependientes" name="dependientes">
-                    </div>
-
-                </div>
-                <div class="info-cliente">
-
-                    <div class="campo">
-                        <label for="direccion-solicitante">Dirección del Solicitante:</label>
-                        <input type="text" id="direccion-solicitante" name="direccion-solicitante">
-                    </div>
-
-                    <div class="campo">
-                        <label for="lugar-vivienda">Lugar donde vive:</label>
-                        <input type="text" id="lugar-vivienda" name="lugar-vivienda">
-                    </div>
-
-
-                    <div class="campo">
-                        <label for="ubicacion-trabajo">Dirección del trabajo:</label>
-                        <input type="text" id="ubicacion-trabajo" name="ubicacion-trabajo">
-                    </div>
-                    <div class="campo">
-                        <label for="telefono-trabajo">Teléfono Trabajo:</label>
-                        <input type="text" id="telefono-trabajo" name="telefono-trabajo">
-                    </div>
-
-                    <div class="campo"class="campo-renta">
-                        <label for="pago-renta ">Gasto de renta:</label>
-                        <input type="number" id="pago-renta" class="renta" name="pago-renta">
-                    </div>
-                    <div class="campo">
-                        <label for="gastos-mensuales">Gastos mensuales:</label>
-                        <input type="number" id="gastos-mensuales" name="gastos-mensuales">
-                    </div>
-
-
-                    <div class="campo">
-                        <label for="horario-trabajo">Horario del trabajo:</label>
-                        <input type="text" id="horario-trabajo" name="horario-trabajo">
-                    </div>
-
-                    <div class="campo">
-                        <label for="ingresos-mensuales">Ingresos mensuales:</label>
-                        <input type="number" id="ingresos-mensuales" name="ingresos-mensuales">
-                    </div>
-
-                    <div class="campo">
-                        <label for="total-ingresos">Total ingresos:</label>
-                        <input type="text" id="total-ingresos" name="total-ingresos" readonly>
-                    </div>
-
-                    <div class="campo pareja">
-                        <label for="conyuge">Pareja:</label>
-                        <input type="text" id="conyuge" name="conyuge">
-                    </div>
-
-
                     <div class="campo pareja">
                         <label for="direccion-trabajo-conyuge">Dirección trabajo Pareja:</label>
                         <input type="text" id="direccion-trabajo-conyuge" name="direccion-trabajo-conyuge">
@@ -159,11 +141,15 @@
                         <label for="telefono-trabajo-conyuge">Teléfono trabajo Pareja:</label>
                         <input type="text" id="telefono-trabajo-conyuge" name="telefono-trabajo-conyuge">
                     </div>
-
+                    <div class="campo">
+                        <label for="dependientes">Dependientes:</label>
+                        <input type="text" id="dependientes" name="dependientes">
+                    </div>
                     <div class="campo">
                         <label for="monto-solicitado">Monto Solicitado (RD$):</label>
                         <input type="number" id="monto-solicitado" name="monto-solicitado" max="5000" >
                     </div>
+
                 </div>
             </div>
 
@@ -172,24 +158,22 @@
 
                 <div class="info-prestamo">
                     <div class="campo">
-                        <label for="nombre-referencia-personal-1">Nombre:</label>
+                        <label for="nombre-referencia-personal-1">Nombre 1:</label>
                         <input type="text" id="nombre-referencia-personal-1" name="nombre-referencia-personal-1">
                     </div>
                     <div class="campo">
-                        <label for="nombre-referencia-personal-2">Nombre:</label>
-                        <input type="text" id="nombre-referencia-personal-2" name="nombre-referencia-personal-2">
-                    </div>
-                </div>
-
-                <div class="info-cliente">
-                    <div class="campo">
-                        <label for="telefono-referencia-personal-1">Teléfono:</label>
+                        <label for="telefono-referencia-personal-1">Teléfono 1:</label>
                         <input type="text" id="telefono-referencia-personal-1" name="telefono-referencia-personal-1">
                     </div>
                     <div class="campo">
-                        <label for="telefono-referencia-personal">Teléfono:</label>
+                        <label for="nombre-referencia-personal-2">Nombre 2:</label>
+                        <input type="text" id="nombre-referencia-personal-2" name="nombre-referencia-personal-2">
+                    </div>
+                    <div class="campo">
+                        <label for="telefono-referencia-personal">Teléfono 2:</label>
                         <input type="text" id="telefono-referencia-personal-2" name="telefono-referencia-personal-2">
                     </div>
+
                 </div>
             </div>
 
@@ -202,19 +186,18 @@
                         <input type="text" id="nombre-referencia-familiar-1" name="nombre_referencia_familiar_1">
                     </div>
                     <div class="campo">
-                        <label for="nombre-referencia-familiar-2">Nombre 2:</label>
-                        <input type="text" id="nombre-referencia-familiar-2" name="nombre_referencia_familiar_2">
-                    </div>
-                </div>
-                <div class="info-cliente">
-                    <div class="campo">
                         <label for="telefono-referencia-familiar-1">Teléfono 1:</label>
                         <input type="text" id="telefono-referencia-familiar-1" name="telefono_referencia_familiar_1">
+                    </div>
+                    <div class="campo">
+                        <label for="nombre-referencia-familiar-2">Nombre 2:</label>
+                        <input type="text" id="nombre-referencia-familiar-2" name="nombre_referencia_familiar_2">
                     </div>
                     <div class="campo">
                         <label for="telefono-referencia-familiar-2">Teléfono 2:</label>
                         <input type="text" id="telefono-referencia-familiar-2" name="telefono_referencia_familiar_2">
                     </div>
+
                 </div>
             </div>
 
@@ -227,9 +210,6 @@
                         <label for="nombre-referencia-comercial">Nombre:</label>
                         <input type="text" id="nombre-referencia-comercial" name="nombre-referencia-comercial">
                     </div>
-                </div>
-
-                <div class="info-cliente">
                     <div class="campo">
                         <label for="telefono-referencia-comercial">Teléfono:</label>
                         <input type="text" id="telefono-referencia-comercial" name="telefono-referencia-comercial">
@@ -254,15 +234,11 @@
                             <option value="2">2</option>
                         </select>
                     </div>
-
-                </div>
-
-                <div class="info-cliente">
                     <div class="campo">
                         <label for="banco"> En que banco:</label>
                         <input type="text" id="banco" name="banco">
                     </div>
- 
+
                 </div>
             </div>
 
@@ -291,7 +267,7 @@
         </form>
 
         <div class="contacto">
-            <p>Tel: 809-555-1234 | Email: prestamos@delgado.com | Dirección: Av. Principal 456, Santo Domingo</p>
+            <p>Tel: 809-370-9837 | Email: prestamosdelgado@gmail.com | Dirección: Estamos frente a óptica Jarabacoa segundo nivel plaza peralta.</p>
         </div>
     </div>
 
@@ -306,4 +282,6 @@
 </body>
 
 </html>
+
+
 

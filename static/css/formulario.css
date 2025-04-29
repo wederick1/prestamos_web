@@ -184,17 +184,64 @@ body {
     
     font-weight: bold;
 }
+/* Estilos para el contenedor de información */
 .seccion-info {
     display: flex;
-    justify-content: space-between;
+    flex-direction: column; /* Por defecto, una columna */
     margin: 25px 0;
     padding: 15px;
     background: #f8f9fa;
     border-left: 5px solid #119d85;
     border-radius: 8px;
 }
-.info-prestamo, .info-cliente {
-    width: 48%;
+
+.info-prestamo {
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr; /* Una columna por defecto */
+    gap: 15px;
+}
+
+.campo {
+    margin-bottom: 15px;
+}
+
+.campo label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.campo input, 
+.campo select {
+    width: 100%;
+    padding: 10px;
+    font-size: 1rem;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    box-sizing: border-box;
+}
+
+/* Estilos para laptop/desktop (pantallas más grandes) */
+@media (min-width: 992px) {
+    .info-prestamo {
+        grid-template-columns: repeat(2, 1fr); /* Dos columnas */
+    }
+    
+    /* Ajustes específicos para campos que deben ocupar ancho completo */
+    .campo-renta,
+    .campo-pareja {
+        grid-column: span 2;
+    }
+}
+
+/* Ajustes adicionales para móviles muy pequeños */
+@media (max-width: 480px) {
+    .campo input, 
+    .campo select {
+        padding: 8px;
+        font-size: 0.9rem;
+    }
 }
 table {
     width: 100%;

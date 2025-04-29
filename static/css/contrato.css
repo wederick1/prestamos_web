@@ -1,5 +1,4 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
-
 /* Variables */
 :root {
   --primary-color: #2D3B4E;
@@ -408,4 +407,105 @@ select.dato:focus {
   border-color: #2ecc71; /* Verde mar */
   outline: none;
   background-color: #eafaf1; /* Fondo verde claro */
+}
+
+
+canvas {
+  touch-action: none;
+}
+
+/* Mejoras para dispositivos móviles */
+@media (max-width: 480px) {
+  .modal-content {
+    width: 90%;
+    margin-top: 20%;
+    padding: 1rem;
+  }
+
+  .firmas {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .firma-box {
+    width: 90%;
+    margin-bottom: 2rem;
+  }
+
+  .firma-linea {
+    width: 100%;
+    height: 40px;
+  }
+
+  .handwritten-signature, .handwritten-signature2 {
+    font-size: 1.8em;
+    position: static;
+    display: block;
+    margin-top: 0.5rem;
+  }
+
+  .sign-btn {
+    width: 100%;
+    padding: 12px;
+    font-size: 1rem;
+  }
+
+  .firma-input {
+    width: 100%;
+    font-size: 1.2em;
+  }
+
+  table {
+    display: block;
+    overflow-x: auto;
+  }
+
+  th, td {
+    font-size: 0.875rem;
+  }
+
+  .header h1 {
+    font-size: 1.5rem;
+    text-align: center;
+  }
+
+  .logo {
+    display: block;
+    margin: 0 auto 1rem;
+  }
+
+  .fecha {
+    position: static;
+    display: block;
+    text-align: center;
+    margin-top: 0.5rem;
+  }
+
+  .checkbox-group {
+    gap: 0.75rem;
+  }
+}
+
+#signature-pad {
+  width: 100% !important;
+  max-width: 100%;
+  height: auto;
+  display: block;
+  margin: 0 auto;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+@media (max-width: 480px) {
+  #signature-pad {
+    width: 100% !important;
+    height: 200px !important;
+  }
+
+  .modal-content {
+    max-width: 95%;
+    overflow-x: hidden;
+    overflow-y: auto;
+  }
 }

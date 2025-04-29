@@ -1,17 +1,14 @@
 document.addEventListener('DOMContentLoaded', function () {
-    // Obtener el ID del cliente desde la URL
     const params = new URLSearchParams(window.location.search);
     const clientId = params.get('id');
 
     if (clientId) {
-        // Obtener los datos del cliente desde la API
         fetch(`/api/clientes/${clientId}`)
             .then(response => response.json())
             .then(cliente => {
                 if (cliente.error) {
                     alert(cliente.error);
                 } else {
-                    // Llenar los campos del contrato con los datos del cliente
                     document.getElementById('nombre-cliente').textContent = cliente.nombre || 'No proporcionado';
                     document.getElementById('cedula-cliente').textContent = cliente.cedula || 'No proporcionado';
                     document.getElementById('monto').textContent = formatCurrency(cliente.monto_solicitado || 0);
@@ -28,7 +25,6 @@ document.addEventListener('DOMContentLoaded', function () {
         alert('No se proporcionó un ID de cliente.');
     }
 
-    // Modal de firma digital
     const modal = document.getElementById('modal-firma');
     const abrirModal = document.getElementById('abrir-modal');
     const borrarFirma = document.getElementById('borrar-firma');
@@ -38,44 +34,92 @@ document.addEventListener('DOMContentLoaded', function () {
     let isDrawing = false;
     const closeModal = document.querySelector('.close-btn');
 
-    // Abrir el modal
-    abrirModal.addEventListener('click', () => modal.style.display = 'block');
+    // Redimensionar y escalar canvas correctamente
+    function resizeCanvas() {
+        const ratio = Math.max(window.devicePixelRatio || 1, 1);
+        const rect = signaturePadCanvas.getBoundingClientRect();
+        signaturePadCanvas.width = rect.width * ratio;
+        signaturePadCanvas.height = rect.height * ratio;
+        signaturePadCanvas.style.width = rect.width + 'px';
+        signaturePadCanvas.style.height = rect.height + 'px';
+        ctx.setTransform(1, 0, 0, 1, 0, 0); // reset
+        ctx.scale(ratio, ratio);
+    }
 
-    // Dibujar en el canvas
-    signaturePadCanvas.addEventListener('mousedown', e => {
+    function getPosition(e) {
+        const rect = signaturePadCanvas.getBoundingClientRect();
+        const isTouch = e.touches && e.touches.length > 0;
+        const clientX = isTouch ? e.touches[0].clientX : e.clientX;
+        const clientY = isTouch ? e.touches[0].clientY : e.clientY;
+
+        return {
+            x: clientX - rect.left,
+            y: clientY - rect.top
+        };
+    }
+
+    function startDrawing(e) {
         isDrawing = true;
+        const pos = getPosition(e);
         ctx.beginPath();
-        ctx.moveTo(e.offsetX, e.offsetY);
+        ctx.moveTo(pos.x, pos.y);
+        e.preventDefault();
+    }
+
+    function draw(e) {
+        if (!isDrawing) return;
+        const pos = getPosition(e);
+        ctx.lineTo(pos.x, pos.y);
+        ctx.stroke();
+        e.preventDefault();
+    }
+
+    function stopDrawing() {
+        isDrawing = false;
+        ctx.closePath();
+    }
+
+    resizeCanvas();
+    window.addEventListener('resize', resizeCanvas);
+
+    // Eventos para mouse
+    signaturePadCanvas.addEventListener('mousedown', startDrawing);
+    signaturePadCanvas.addEventListener('mousemove', draw);
+    signaturePadCanvas.addEventListener('mouseup', stopDrawing);
+    signaturePadCanvas.addEventListener('mouseout', stopDrawing);
+
+    // Eventos para touch
+    signaturePadCanvas.addEventListener('touchstart', startDrawing, { passive: false });
+    signaturePadCanvas.addEventListener('touchmove', draw, { passive: false });
+    signaturePadCanvas.addEventListener('touchend', stopDrawing);
+    signaturePadCanvas.addEventListener('touchcancel', stopDrawing);
+
+    // Abrir modal
+    abrirModal.addEventListener('click', () => {
+        modal.style.display = 'block';
+        resizeCanvas(); // asegurar que se escale al mostrarse
     });
 
-    signaturePadCanvas.addEventListener('mousemove', e => {
-        if (isDrawing) {
-            ctx.lineTo(e.offsetX, e.offsetY);
-            ctx.stroke();
-        }
+    // Cerrar modal
+    closeModal.addEventListener('click', () => modal.style.display = 'none');
+    window.addEventListener('click', e => {
+        if (e.target === modal) modal.style.display = 'none';
     });
 
-    signaturePadCanvas.addEventListener('mouseup', () => isDrawing = false);
-    signaturePadCanvas.addEventListener('mouseleave', () => isDrawing = false);
-
-    // Borrar la firma
+    // Borrar firma
     borrarFirma.addEventListener('click', () => ctx.clearRect(0, 0, signaturePadCanvas.width, signaturePadCanvas.height));
 
-    // Finalizar la firma
+    // Finalizar firma
     finalizarFirma.addEventListener('click', function () {
         const firmaData = signaturePadCanvas.toDataURL('image/png');
         const medioEntrega = document.querySelector('input[name="grupo-checkbox"]:checked')?.id || 'No especificado';
-        const garantia = document.getElementById('garantia').value; // Capturar el valor de la garantía
-    
-        console.log('Garantía seleccionada:', garantia); // Depuración
-    
-        // Validar que los campos requeridos estén completos
+        const garantia = document.getElementById('garantia').value;
+
         if (!firmaData || !medioEntrega || !garantia || !clientId) {
             alert('Por favor, completa todos los campos antes de continuar.');
             return;
         }
-    
-        // Enviar los datos al servidor
+
         fetch('/api/firmar', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
@@ -83,7 +127,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 cliente_id: clientId,
                 firma: firmaData,
                 medio_entrega: medioEntrega,
-                garantia: garantia, // Enviar la garantía
+                garantia: garantia,
                 estado: 'aprobado',
             }),
         })
@@ -104,19 +148,9 @@ document.addEventListener('DOMContentLoaded', function () {
                 alert('Error al enviar los datos');
             });
     });
-
-    // Evento para cerrar el modal al hacer clic en la "X"
-    closeModal.addEventListener('click', function () {
-        modal.style.display = 'none';
-    });
-
-    // Cerrar el modal al hacer clic fuera de él
-    window.addEventListener('click', e => {
-        if (e.target === modal) modal.style.display = 'none';
-    });
 });
 
-// Función para formatear moneda
+// Formato moneda
 function formatCurrency(amount) {
     return parseFloat(amount || 0).toLocaleString('es-DO', {
         minimumFractionDigits: 2,
@@ -124,7 +158,7 @@ function formatCurrency(amount) {
     });
 }
 
-// Función para formatear fecha
+// Formato fecha
 function formatDate(date) {
     return new Date(date).toLocaleDateString('es-ES', {
         day: '2-digit',
@@ -133,14 +167,12 @@ function formatDate(date) {
     });
 }
 
-// Asegurar que solo un checkbox esté seleccionado
+// Checkbox único
 document.querySelectorAll('input[name="grupo-checkbox"]').forEach(checkbox => {
     checkbox.addEventListener('change', function () {
         if (this.checked) {
-            document.querySelectorAll('input[name="grupo-checkbox"]').forEach(otherCheckbox => {
-                if (otherCheckbox !== this) {
-                    otherCheckbox.checked = false;
-                }
+            document.querySelectorAll('input[name="grupo-checkbox"]').forEach(other => {
+                if (other !== this) other.checked = false;
             });
         }
     });

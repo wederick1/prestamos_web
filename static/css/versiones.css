@@ -28,17 +28,45 @@ body {
   }
   
   .version-item {
-    background-color: #f9f9f9;
-    margin: 10px 0;
-    padding: 15px;
-    border-radius: 5px;
+    padding: 1rem;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    margin-bottom: 1rem;
     cursor: pointer;
-    transition: background-color 0.3s;
-  }
-  
-  .version-item:hover {
-    background-color: #e2e2e2;
-  }
+    transition: background-color 0.3s ease;
+}
+
+.version-item:hover {
+    background-color: #f9f9f9;
+}
+
+.version-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.version-header h3 {
+    margin: 0;
+    font-size: 1.2rem;
+    font-weight: 600;
+}
+
+.version-date {
+    margin: 0;
+    font-size: 0.9rem;
+    color: #888;
+    text-align: right;
+}
+
+.version-details {
+    margin-top: 0.5rem;
+    display: none;
+}
+
+.version-item.active .version-details {
+    display: block;
+}
   
   .version-item h3 {
     margin: 0;

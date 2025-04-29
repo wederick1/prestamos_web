@@ -101,16 +101,6 @@ const notyf = new Notyf({
   // Función para alternar la visibilidad de los detalles de la versión
   function toggleDetails(element) {
     const details = element.querySelector('.version-details');
-    const allDetails = document.querySelectorAll('.version-details');
-  
-    // Cerrar otros detalles abiertos
-    allDetails.forEach(detail => {
-      if (detail !== details) {
-        detail.style.display = 'none';
-      }
-    });
-  
-    // Alternar la visibilidad del detalle seleccionado
     details.style.display = details.style.display === 'block' ? 'none' : 'block';
-  }
+}
   

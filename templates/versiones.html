@@ -20,11 +20,13 @@ Control de Versiones
 
     <!-- Lista de versiones, inicialmente oculta -->
     <ul class="version-list">
-        {% for dato in datos %}
+        {% for dato in datos %}  <!-- Limita a solo el primer elemento -->
             <li class="version-item" onclick="toggleDetails(this)">
-                <h3>{{ dato.nombre }}</h3>
-                <p>{{ dato.fecha }}</p>
-                <div class="version-details">
+                <div class="version-header">
+                    <h3>{{ dato.nombre }}</h3>
+                    <p class="version-date">{{ dato.fecha }}</p>
+                </div>
+                <div class="version-details" style="display: none;">
                     <p><strong>Descripción:</strong> {{ dato.descripcion }}</p>
                 </div>
             </li>

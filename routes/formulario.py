@@ -51,8 +51,8 @@ def formulario():
                         font-family: Arial, sans-serif;
                         margin: 0;
                         padding: 15px;
-                        line-height: 1.3;
-                        font-size: 12px;
+                        font-size: 10px;
+                        line-height: 1.2;
                     }
 
                     .documento-container {
@@ -87,7 +87,6 @@ def formulario():
                     .fecha {
                         font-size: 0.75em;
                         color: #119d85;
-                        font-weight: bold;
                         text-align: right;
                     }
 
@@ -221,20 +220,12 @@ def formulario():
                                 <span>{{ datos['tipo_vivienda'] }}</span>
                             </div>
                             <div class="campo">
-                                <label>Correo electrónico:</label>
-                                <span>{{ datos['correo'] }}</span>
+                                <label>Gasto de renta:</label>
+                                <span>{{ datos['pago_renta'] }}</span>
                             </div>
-                        </div>
-
-                        <!-- Columna Derecha -->
-                        <div class="info-cliente">
                             <div class="campo">
                                 <label>Ocupación:</label>
                                 <span>{{ datos['ocupacion'] }}</span>
-                            </div>
-                            <div class="campo">
-                                <label>Cedula:</label>
-                                <span>{{ datos['cedula'] }}</span>
                             </div>
                             <div class="campo">
                                 <label>Lugar de trabajo:</label>
@@ -245,6 +236,10 @@ def formulario():
                                 <span>{{ datos['ubicacion_trabajo'] }}</span>
                             </div>
                             <div class="campo">
+                                <label>Horario de trabajo:</label>
+                                <span>{{ datos['horario_trabajo'] }}</span>
+                            </div>
+                            <div class="campo">
                                 <label>Teléfono trabajo:</label>
                                 <span>{{ datos['telefono_trabajo'] }}</span>
                             </div>
@@ -252,9 +247,18 @@ def formulario():
                                 <label>Tiempo en la empresa:</label>
                                 <span>{{ datos['tiempo_empresa'] }}</span>
                             </div>
+
+                        </div>
+
+                        <!-- Columna Derecha -->
+                        <div class="info-cliente">
                             <div class="campo">
-                                <label>Horario de trabajo:</label>
-                                <span>{{ datos['horario_trabajo'] }}</span>
+                                <label>Correo electrónico:</label>
+                                <span>{{ datos['correo'] }}</span>
+                            </div>
+                            <div class="campo">
+                                <label>Cedula:</label>
+                                <span>{{ datos['cedula'] }}</span>
                             </div>
                             <div class="campo">
                                 <label>Ingresos mensuales:</label>
@@ -264,6 +268,42 @@ def formulario():
                                 <label>Otros ingresos:</label>
                                 <span>{{ datos['otros_ingresos'] }}</span>
                             </div>
+                            <div class="campo">
+                                <label>Gastos mensuales:</label>
+                                <span>{{ datos['gastos_mensuales'] }}</span>
+                            </div>
+                            <div class="campo">
+                                <label>Total ingresos:</label>
+                                <span>{{ datos['total_ingresos'] }}</span>
+                            </div>
+                             <div class="campo">
+                                <label>Estado civil:</label>
+                                <span>{{ datos['estado_civil'] }}</span>
+                            </div>
+                             <div class="campo">
+                                <label>Pareja Nombre:</label>
+                                <span>{{ datos['conyuge'] }}</span>
+                            </div>
+                            <div class="campo">
+                                <label>Celular Pareja:</label>
+                                <span>{{ datos['celular_conyuge'] }}</span>
+                            </div>
+                            <div class="campo">
+                                <label>Trabajo Pareja:</label>
+                                <span>{{ datos['trabajo_conyuge'] }}</span>
+                            </div> 
+                            <div class="campo">
+                                <label>Dirección trabajo Pareja:</label>
+                                <span>{{ datos['direccion_trabajo_conyuge'] }}</span>
+                            </div>
+                            <div class="campo">
+                                <label>Teléfono trabajo Pareja:</label>
+                                <span>{{ datos['telefono_trabajo_conyuge'] }}</span>
+                            </div> 
+                            <div class="campo">
+                                <label>Dependientes:</label>
+                                <span>{{ datos['dependientes'] }}</span>
+                            </div> 
                             <div class="campo">
                                 <label>Monto Solicitado (RD$):</label>
                                 <span>{{ datos['monto_solicitado'] }}</span>
@@ -276,21 +316,19 @@ def formulario():
                     <div class="seccion-info">
                         <div class="info-prestamo">
                             <div class="campo">
-                                <label>Nombre:</label>
+                                <label>Nombre 1:</label>
                                 <span>{{ datos['nombre_referencia_personal_1'] }}</span>
                             </div>
                             <div class="campo">
-                                <label>Nombre:</label>
-                                <span>{{ datos['nombre_referencia_personal_2'] }}</span>
-                            </div>
-                        </div>
-                        <div class="info-cliente">
-                            <div class="campo">
-                                <label>Teléfono:</label>
+                                <label>Teléfono 1:</label>
                                 <span>{{ datos['telefono_referencia_personal_1'] }}</span>
                             </div>
                             <div class="campo">
-                                <label>Teléfono:</label>
+                                <label>Nombre 2:</label>
+                                <span>{{ datos['nombre_referencia_personal_2'] }}</span>
+                            </div>
+                            <div class="campo">
+                                <label>Teléfono 2:</label>
                                 <span>{{ datos['telefono_referencia_personal_2'] }}</span>
                             </div>
                         </div>
@@ -305,14 +343,12 @@ def formulario():
                                 <span>{{ datos['nombre_referencia_familiar_1'] }}</span>
                             </div>
                             <div class="campo">
-                                <label>Nombre:</label>
-                                <span>{{ datos['nombre_referencia_familiar_2'] }}</span>
-                            </div>
-                        </div>
-                        <div class="info-cliente">
-                            <div class="campo">
                                 <label>Teléfono:</label>
                                 <span>{{ datos['telefono_referencia_familiar_1'] }}</span>
+                            </div>
+                            <div class="campo">
+                                <label>Nombre:</label>
+                                <span>{{ datos['nombre_referencia_familiar_2'] }}</span>
                             </div>
                             <div class="campo">
                                 <label>Teléfono:</label>
@@ -329,8 +365,6 @@ def formulario():
                                 <label>Nombre:</label>
                                 <span>{{ datos['nombre_referencia_comercial'] }}</span>
                             </div>
-                        </div>
-                        <div class="info-cliente">
                             <div class="campo">
                                 <label>Teléfono:</label>
                                 <span>{{ datos['telefono_referencia_comercial'] }}</span>
@@ -349,15 +383,12 @@ def formulario():
                                 <label>Prestamos activos:</label>
                                 <span>{{ datos['prestamos_activos'] }}</span>
                             </div>
-                        </div>
-                        <div class="info-cliente">
                             <div class="campo">
                                 <label>En que banco:</label>
                                 <span>{{ datos['banco'] }}</span>
                             </div>
                         </div>
                     </div>
-                    <!-- Otras secciones... -->
 
                     <!-- Firmas -->
                     <div class="firmas">
