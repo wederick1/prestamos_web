@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="es">
+    
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Préstamos Delgado</title>
+    <link rel="stylesheet" href="/static/css/home.css">
+</head>
+
+<body>
+    <div id="banner">
+        <div class="inner">
+            <img src="/static/img/logo.jpg" alt="Logo" class="logo">
+            <h2>Préstamos Delgado</h2>
+            <p>Tu mejor opción financiera</p>
+            <a href="{{ url_for('formulario.formulario') }}" class="cta-button">Solicitar Ya</a>
+        </div>
+    </div>
+
+    <section class="scroll-animation">
+        <h2>¿Qué es Préstamos Delgado?</h2>
+        <p><strong>Préstamos Delgado </strong>es una empresa dedicada a ofrecer soluciones financieras accesibles,
+            rápidas y seguras. Nuestro principal objetivo es brindar apoyo económico a personas y negocios,
+            permitiéndoles alcanzar sus metas sin complicaciones.
+
+            Con años de experiencia en el sector, nos especializamos en préstamos personales, financiamiento para bienes
+            y capital para emprendimientos, siempre con tasas competitivas y planes de pago flexibles.
+
+            🚀 ¿Por qué elegirnos?
+            <br>
+            <br>
+        <p>✅ Aprobación rápida y sin trámites innecesarios.</p>
+        <p>✅ Tasas de interés accesibles y condiciones transparentes.</p>
+        <p>✅ Múltiples opciones de financiamiento adaptadas a tus necesidades.</p>
+        <p>✅ Seguridad y confianza en cada operación.</p><br>
+
+
+
+
+        En Préstamos Delgado, creemos en el poder de las oportunidades. Nos encargamos de las finanzas para que tú
+        puedas enfocarte en crecer y cumplir tus sueños.
+
+        </p>
+        <div class="button-container"> <!-- Contenedor agregado -->
+            <a href="{{ url_for('formulario.formulario') }}" class="cta-button">¡Solicita tu préstamo hoy y avanza con
+                nosotros!</a>
+        </div>
+    </section>
+
+    <section class="scroll-animation">
+        <h2>Nuestros Productos</h2>
+        <div class="card-grid">
+            <div class="card">
+                <img src="/static/img/prestamo1.jpg" alt="Préstamo Personal" loading="lazy">
+                <h3>Préstamo Personal</h3>
+                <p>Hasta $10,000 pesos con tasas preferenciales y plazos flexibles.</p>
+            </div>
+            <div class="card">
+                <img src="/static/img/prestamo2.jpg" alt="Préstamo Nómina" loading="lazy">
+                <h3>Financiamiento De Productos Electronicos</h3>
+                <p>Obtén financiamiento inmediato y sin complicaciones si eres trabajador formal. ¡Haz tuyo ese
+                    dispositivo que tanto deseas!</p>
+            </div>
+            <div class="card">
+                <img src="/static/img/prestamo3.jpg" alt="Préstamo Auto" loading="lazy">
+                <h3>Financiamiento De Vehiculos</h3>
+                <p>Adquiere tu moto o carro con nuestro plan de financiamiento especial.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="scroll-animation">
+        <h2>¿Cómo funciona?</h2>
+        <div class="steps">
+            <div class="step">
+                <div class="step-number">1</div>
+                <h3>Solicitud</h3>
+                <p>Completa nuestro formulario en línea</p>
+            </div>
+            <div class="step">
+                <div class="step-number">2</div>
+                <h3>Aprobación</h3>
+                <p>Respuesta en menos de 48 horas</p>
+            </div>
+            <div class="step">
+                <div class="step-number">3</div>
+                <h3>Desembolso</h3>
+                <p>Recibe tu dinero directamente en tu cuenta</p>
+            </div>
+        </div>
+        <div class="button-container"> <!-- Contenedor agregado -->
+            <a href="{{ url_for('formulario.formulario') }}" class="cta-button">Solicitar Ya</a>
+        </div>
+
+    </section>
+
+    <section class="scroll-animation contact-form">
+        <h2>¿Tienes alguna duda? ¡Estamos aquí para ayudarte!</h2>
+
+        <form>
+            <div class="form-group">
+                <input type="text" placeholder="Nombre completo" required>
+            </div>
+            <div class="form-group">
+                <input type="email" placeholder="Correo electrónico" required>
+            </div>
+            <div class="form-group">
+                <input type="tel" placeholder="Teléfono" required>
+            </div>
+            <div class="form-group">
+                <textarea placeholder="Mensaje" rows="5" required></textarea>
+            </div>
+            <button class="button">Enviar Mensaje</button>
+        </form>
+    </section>
+
+    <footer>
+        <p>&copy; 2025 Préstamos Delgado. Todos los derechos reservados.</p>
+    </footer>
+
+    <button id="btn-inicio" class="floating-button" title="Volver al inicio">↑</button>
+
+    <script>
+        // Animación al hacer scroll - Configuración mejorada
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                // Añade la clase cuando el elemento está en el viewport
+                // y la remueve cuando sale para permitir re-animaciones
+                entry.target.classList.toggle('visible', entry.isIntersecting);
+            });
+        }, { 
+            threshold: 0.30, // Aumentamos un poco el threshold
+            rootMargin: '0px 0px -50px 0px' // Detecta 50px antes de entrar
+        });
+    
+        document.querySelectorAll('section').forEach((element) => { // Selecciona directamente las secciones
+            observer.observe(element);
+        });
+    
+        // Mostrar/ocultar botón al hacer scroll con debounce
+        const btnInicio = document.getElementById('btn-inicio');
+        let isScrolling = false;
+    
+        window.addEventListener('scroll', () => {
+            if (!isScrolling) {
+                window.requestAnimationFrame(() => {
+                    btnInicio.classList.toggle('visible', window.scrollY > 200);
+                    isScrolling = false;
+                });
+                isScrolling = true;
+            }
+        });
+    
+        // Función para ir al inicio mejorada
+        btnInicio.addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+            // Forzar hardware acceleration
+            btnInicio.style.transform = 'translateZ(0)';
+        });
+    </script>
+
+</body>
+
+</html>

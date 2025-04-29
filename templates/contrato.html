@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contrato de Préstamo - Delgado</title>
+    <link rel="stylesheet" href="/static/css/contrato.css">
+</head>
+
+<body>
+    <div class="documento-container">
+        <div class="header">
+            <img src="/static/img/logo.jpg" alt="Logo" class="logo">
+            <h1>PRÉSTAMO DELGADO</h1>
+            <span id="fecha-solicitud" class="fecha">Fecha:</span>
+          </div>
+
+        <h2>Contrato de Préstamo N° <span id="numero-contrato">0001</span></h2>
+
+        <div class="seccion-info">
+            <p>
+                DEBO (DEBEMOS) Y PAGARÉ (PAGAREMOS) AL SEÑOR ELVIN DELGADO FERNÁNDEZ, portador del RNC xxx-xxxxxxx-x,
+                o a su orden la cantidad de 
+                RD$ <span id="monto" class="dato">0.00</span> 
+                (Pesos Dominicanos).
+            </p>
+        </div>
+
+        <div class="seccion-medio">
+            <h3>Medio de Entrega del Dinero</h3>
+            <label for="Efectivo"><input type="checkbox" name="grupo-checkbox" id="Efectivo" value="Efectivo"> Efectivo</label><br>
+            <label for="Cheque"><input type="checkbox" name="grupo-checkbox" id="Cheque" value="Cheque"> Cheque</label><br>
+            <label for="Transferencia o Depósito"><input type="checkbox" name="grupo-checkbox" id="Transferencia" value="Transferencia o Depósito"> Transferencia o Depósito</label>
+        </div>
+
+        <div class="condiciones">
+            <p>
+                Me comprometo a pagar en la fecha indicada. Por incumplimiento, quedan afectados todos mis bienes, con renuncia del fuero domicilio y cualquier ley que pueda favorecerme.
+                Este pagaré está afectado por una mora del 5% mensual sobre la cuota vencida. 
+                Si el préstamo presenta 45 días de retraso, la garantía quedará adjudicada al acreedor.
+                En caso de incumplimiento, la deuda pasará al codeudor solidario.
+                Todos los gastos legales serán cubiertos por el deudor o codeudor solidario.
+                Visitas de cobro generan un costo de RD$300.
+                La mora inicia 2 días después del vencimiento en préstamos de una sola cuota.
+                El acreedor puede ejecutar el cobro sin intervención judicial (art. 1134 del Código Civil).
+                En caso de fallecimiento del deudor, la deuda será asumida por los herederos o codeudor.
+                El acreedor podrá reportar a burós de crédito.
+                Si hay 30 días de atraso, se publicará la cédula en redes sociales.
+            </p>
+        </div>
+
+        <h3>Por lo no previsto, las partes se remiten al derecho común.</h3>
+
+        <div class="seccion-escritura">
+            <p>Espacio reservado para: "BUENO, VÁLIDO, LEÍDO Y APROBADO POR LA SUMA" en letras y números.</p>
+            <p>
+                Yo, 
+                <span id="nombre-cliente" class="dato">Nombre del Cliente</span>, 
+                con cédula 
+                <span id="cedula-cliente" class="dato">Cédula del Cliente</span>, 
+                declaro que he leído y acepto los términos por la suma de 
+                <span id="monto-letras" class="dato">RD$ 0.00</span>
+            </p>
+        </div>
+
+        <div class="seccion-datos">
+            <p>Condiciones de pago: 
+                <select id="condiciones-pago" class="dato">
+                    <option value="semanal">Semanal</option>
+                    <option value="quincenal">Quincenal</option>
+                    <option value="mensual" selected>Mensual</option>
+                </select>
+            </p>
+            <p>Garantía del préstamo: 
+                <select id="garantia" class="dato">
+                    <option value="ninguna" selected>Ninguna</option>
+                    <option value="hipotecaria">Garantía hipotecaria</option>
+                    <option value="personal">Garantía personal</option>
+                    <option value="ingresos-futuros">Ingresos futuros</option>
+                    <option value="prendaria">Garantía prendaria</option>
+                </select>
+            </p>
+            <p>Monto total: RD$ <span id="monto-total" class="dato">0.00</span></p>
+        </div>
+
+        <div class="tabla-firmas">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Deudor</th>
+                        <th>Apodo</th>
+                        <th>Cédula</th>
+                        <th>Codeudor</th>
+                        <th>Apodo</th>
+                        <th>Cédula</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td id="deudor-nombre">Carlos</td>
+                        <td id="deudor-apodo">Pata</td>
+                        <td id="deudor-cedula">hroa</td>
+                        <td id="codeudor-nombre">ahah</td>
+                        <td id="codeudor-apodo">aah</td>
+                        <td id="codeudor-cedula">ajaja</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="firmas">
+            <div class="firma-box">
+                <div class="firma-linea"></div>
+                <p>Firma del Deudor</p>
+            </div>
+            <div class="firma-box">
+                <div class="firma-linea"><span class="firma-input">Elvis Delgado</span> </div>
+                <p>Firma del Fiador</p>
+            </div>
+            <div class="firma-box">
+                <div class="firma-linea"><span class="firma-input">administracion</span></div>
+                <p>Encargado de Oficina</p>
+            </div>
+        </div>
+        
+        <!-- Botón para abrir el modal -->
+        <div class="boton-firmar">
+            <button id="abrir-modal" class="sign-btn btn">Firmar</button>
+        </div>
+
+        <div class="contacto">
+            <p>Tel: 809-555-1234 | Email: prestamos@delgado.com | Dirección: Av. Principal 456, Santo Domingo</p>
+        </div>
+    </div>
+
+    <div id="modal-firma" class="modal">
+        
+        <div class="modal-content">
+            <span class="close-btn">&times;</span>
+            <h3>Firma Digital</h3>
+            <div class="campo">
+                <label for="signatureInput">Firma:</label>
+                <canvas id="signature-pad" width="400" height="200" style="border: 1px solid #ccc;"></canvas>
+            </div>
+            <div class="modal-buttons">
+                <button id="borrar-firma" class="sign-btn">Borrar Firma</button>
+                <button id="finalizar-firma" class="sign-btn">Finalizar</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="/static/js/contrato.js"></script>
+</body>
+</html>

@@ -1,0 +1,39 @@
+{% extends "admin.html" %}
+
+{% block title %}Solicitudes{% endblock %}
+
+{% block styles %}
+<link rel="stylesheet" href="/static/css/solicitudes.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
+{% endblock %}
+
+{% block content %}
+<main>
+    <h1>Solicitudes</h1>
+
+    <div class="table-container">
+        <table id="clientes" class="display" style="width:100%">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Nombre</th>
+                    <th>Email</th>
+                    <th>Teléfono</th>
+                    <th>Monto</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Se llenará dinámicamente con JavaScript -->
+            </tbody>
+        </table>
+        
+        
+    </div>
+</main>
+{% endblock %}
+
+{% block scripts %}
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="/static/js/solicitudes.js"></script>
+{% endblock %}

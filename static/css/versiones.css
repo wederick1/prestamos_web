@@ -1,0 +1,198 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    color: #333;
+    margin: 0;
+    padding: 0;
+  }
+  
+  .container {
+    width: 80%;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    position: relative; /* Asegúrate de que el contenedor tiene un posicionamiento relativo */
+  }
+  
+  h1 {
+    text-align: center;
+    color: #333;
+  }
+  
+  /* Estilo para la lista de versiones */
+  .version-list {
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  .version-item {
+    background-color: #f9f9f9;
+    margin: 10px 0;
+    padding: 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  .version-item:hover {
+    background-color: #e2e2e2;
+  }
+  
+  .version-item h3 {
+    margin: 0;
+    color: #555;
+  }
+  
+  .version-item p {
+    margin: 5px 0;
+    color: #777;
+  }
+  
+  /* Estilo para los detalles de la versión */
+  .version-details {
+    display: none;
+    padding-top: 10px;
+    margin-top: 10px;
+    border-top: 1px solid #ccc;
+  }
+  
+  .version-details p {
+    color: #444;
+    font-size: 14px;
+  }
+  
+  /* Footer */
+  .footer {
+    text-align: center;
+    margin-top: 30px;
+  }
+  
+  .footer a {
+    text-decoration: none;
+    color: #007bff;
+  }
+  
+  .footer a:hover {
+    text-decoration: underline;
+  }
+  
+  /* Estilo para el botón dentro del contenedor */
+  .btn-comprobar {
+    display: inline-block; /* Ahora el botón estará en línea con el contenido */
+    margin: 20px auto 20px; /* Para que el botón se coloque de manera centrada */
+    background-color: #007bff;
+    color: #fff;
+    font-size: 16px;
+    font-weight: bold;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s, transform 0.2s;
+    text-decoration: none;
+  }
+  
+  .btn-comprobar:hover {
+    background-color: #0056b3;
+    transform: scale(1.05);
+  }
+  
+  .btn-comprobar:active {
+    background-color: #003f7f;
+    transform: scale(1);
+  }
+  
+  
+  /* Modal */
+  .modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: none; /* Inicialmente oculto */
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .modal-content {
+    background-color: white;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    position: relative;
+  }
+  
+  .spinner {
+    border: 4px solid rgba(255, 255, 255, 0.3);
+    border-top: 4px solid #007bff;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    animation: spin 2s linear infinite;
+    margin: 20px auto; /* Centrado automático en su contenedor */
+  }
+  
+  @keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
+  
+  /* Estilo para el botón dentro del contenedor */
+  .btn-actualizar {
+    display: inline-block; /* Ahora el botón estará en línea con el contenido */
+    margin: 20px auto 20px; /* Para que el botón se coloque de manera centrada */
+    background-color: #007bff;
+    color: #fff;
+    font-size: 16px;
+    font-weight: bold;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s, transform 0.2s;
+    text-decoration: none;
+  }
+  
+  .btn-actualizar:hover {
+    background-color: #0056b3;
+    transform: scale(1.05);
+  }
+  
+  .btn-actualizar:active {
+    background-color: #003f7f;
+    transform: scale(1);
+  }
+  
+  .hidden {
+    display: none;
+  }
+  
+  #back-btn {
+    position: absolute;
+    top: 15px; /* Ajusta según altura */
+    left: 15px; /* Si quieres en la izquierda */
+    padding: 8px 12px;
+    background-color: #3b82f6; /* Azul bonito */
+    color: white;
+    border-radius: 6px;
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 0.9rem;
+    z-index: 1001; /* Más que sidebar */
+    transition: background-color 0.2s;
+}
+
+#back-btn:hover {
+    background-color: #2563eb; /* Azul más oscuro al pasar el mouse */
+    cursor: pointer;
+}
+ 
+  
+  

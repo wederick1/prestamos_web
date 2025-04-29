@@ -1,0 +1,573 @@
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400..700&display=swap');
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 20px;
+    background: linear-gradient(135deg, #f0f9f7, #e1f3ef);
+}
+.documento-container {
+    max-width: 800px;
+    background: white;
+    padding: 30px;
+    margin: auto;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    position: relative;
+    overflow: hidden;
+}
+/* Media Queries para dispositivos móviles */
+@media (max-width: 768px) {
+    body {
+        padding: 5px;
+    }
+    
+    .documento-container {
+        padding: 15px;
+    }
+    
+    .header {
+        flex-direction: column;
+        text-align: center;
+    }
+    
+    .header h1 {
+        font-size: 1.8rem;
+        margin-top: 10px;
+    }
+    
+    .logo {
+        max-width: 80px;
+        padding: 40px;
+    }
+    
+    .fecha {
+        position: static;
+        text-align: center;
+        padding: 5px 0;
+        font-size: 0.8rem;
+    }
+    
+    .seccion-info {
+        flex-direction: column;
+    }
+    
+    .info-prestamo, .info-cliente {
+        width: 100% !important;
+        margin-bottom: 15px;
+    }
+    
+    table th, table td {
+        padding: 8px 10px;
+        font-size: 12px;
+    }
+    
+    .total {
+        font-size: 1rem;
+        padding: 10px;
+    }
+    
+    .firmas {
+        flex-direction: column;
+        gap: 20px;
+    }
+    
+    .firma-box {
+        width: 100%;
+    }
+    
+    .handwritten-signature, .handwritten-signature2 {
+        position: relative;
+        left: 0 !important;
+        font-size: 1.8em;
+        text-align: center;
+    }
+    
+    .modal-content {
+        width: 90%;
+        max-width: 300px;
+    }
+    
+    #abrirFirmaModal {
+        padding: 12px 30px;
+        font-size: 1em;
+    }
+}
+
+@media (max-width: 480px) {
+
+    .fecha{
+        font-size: 0.8rem;
+        padding: 3px;
+    }
+    .header h1 {
+        font-size: 1.5rem;
+    }
+    
+    table {
+        display: block;
+        overflow-x: auto;
+    }
+    
+    .campo input, .campo select {
+        width: 100%;
+    }
+}
+
+
+@media (max-width: 480px) {
+    .header h1 {
+        font-size: 1.3rem;
+    }
+    
+    .seccion-info {
+        padding: 8px;
+    }
+    
+    .field {
+        font-size: 16px !important;
+        padding: 10px !important;
+    }
+    
+    .sign {
+        padding: 6px 12px !important;
+        font-size: 14px;
+    }
+    
+    .handwritten-signature, .handwritten-signature2 {
+        font-size: 1.8em;
+    }
+    
+    .firma-linea {
+        width: 90%;
+        top: -20px;
+    }
+    
+    .modal {
+        gap: 20px;
+    }
+}
+.documento-container::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(120deg, rgba(17, 157, 133, 0.1) 40%, rgba(255, 255, 255, 0.8) 80%);
+    z-index: -1;
+}
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 3px solid #119d85;
+    padding-bottom: 15px;
+    margin-bottom: 20px;
+    position: relative;
+}
+.header h1 {
+    color: #119d85;
+    font-size: 2.5rem;
+    margin: 0;
+    flex-grow: 1;
+    text-align: center;
+}
+.logo {
+    max-width: 120px;
+}
+.fecha {
+    position: absolute;
+    top: 0;
+    right: 0;
+    font-size: 0.8rem;
+    color: #119d85;
+    
+    font-weight: bold;
+}
+.seccion-info {
+    display: flex;
+    justify-content: space-between;
+    margin: 25px 0;
+    padding: 15px;
+    background: #f8f9fa;
+    border-left: 5px solid #119d85;
+    border-radius: 8px;
+}
+.info-prestamo, .info-cliente {
+    width: 48%;
+}
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    background-color: #fff;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+table th, table td {
+    text-align: left;
+    padding: 12px 15px;
+    font-size: 14px;
+}
+table th {
+    background-color: #f8f9fa;
+    font-weight: bold;
+    color: #495057;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+table tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+.total {
+    text-align: right;
+    font-size: 1.2em;
+    margin-top: 20px;
+    padding: 15px;
+    border-radius: 8px;
+    background: #f8f9fa;
+    border-left: 5px solid #119d85;
+}
+.firmas {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 40px;
+    padding-top: 30px;
+    border-top: 2px solid #119d85;
+}
+.firma-box {
+    text-align: center;
+    width: 40%;
+}
+.firma-linea {
+    border-bottom: 2px solid #119d85;
+    width: 80%;
+    margin: 0 auto 10px;
+    height: 50px;
+}
+.terminos {
+    margin: 25px 0;
+    padding: 20px;
+    background: #f8f9fa;
+    border-radius: 8px;
+}
+.contacto {
+    text-align: center;
+    margin-top: 25px;
+    font-size: 0.9em;
+    color: #555;
+}
+form {
+    margin-top: 20px;
+}
+.campo {
+    margin-bottom: 15px;
+}
+.campo label {
+    display: block;
+    font-weight: bold;
+}
+.campo input, .campo select {
+    width: 90%;
+    padding: 10px;
+    font-size: 1rem;
+    margin-top: 5px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+#signatureInput {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.sign-btn {
+  position: absolute;
+  right: 5px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: #000;
+  color: white;
+  border: none;
+  padding: 8px 12px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.signature-output {
+  border-top: 1px solid #ccc;
+  padding-top: 20px;
+  margin-top: 20px;
+}
+
+
+.handwritten-signature {
+    font-family: 'Dancing Script', cursive;
+    font-size: 2.5em;
+    color: #1a1a1a;
+    position: absolute;
+    left: 155px; /* Asegura que esté sobre la línea */
+    white-space: nowrap;
+}
+.handwritten-signature2 {
+    font-family: 'Dancing Script', cursive;
+    font-size: 2.5em;
+    color: #1a1a1a;
+    position: absolute;
+    left: 500px; /* Asegura que esté sobre la línea */
+    white-space: nowrap;
+}
+
+/* Animaciones */
+@keyframes float {
+    0% { transform: translateY(0px); }
+    50% { transform: translateY(-5px); }
+    100% { transform: translateY(0px); }
+}
+
+@keyframes dash {
+    to {
+        stroke-dashoffset: 0;
+    }
+}
+
+#abrirFirmaModal{
+    display: inline-block;
+    padding: 18px 45px;
+    background: #119d85;
+    color: white !important;
+    text-decoration: none;
+    border-radius: 50px;
+    font-size: 1.1em;
+    transition: all 0.3s ease;
+    box-shadow: 0 8px 20px rgba(17, 157, 133, 0.3);
+    position: relative;
+    overflow: hidden;
+    margin-top: 2em;
+    animation: float 3s ease-in-out infinite;
+
+}
+
+/* Estilos para el sistema de firma */
+.modal {
+    position: fixed;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    flex-direction: column;
+    gap: 36px;
+    width: 380px;
+    padding: 24px;
+    border-radius: 40px;
+    background: linear-gradient(180deg, rgba(255,255,255,0.9) 0%, rgba(255,255,255,0.7) 100%);
+    box-shadow: 0 24px 48px -24px rgba(0,0,0,0.1);
+    z-index: 1000;
+    display: none;
+}
+
+.modal.active {
+    display: flex;
+}
+
+.field-wrapper {
+    position: relative;
+}
+
+.field {
+    font-family: "Instrument Sans", sans-serif;
+    font-size: 20px;
+    width: 100%;
+    padding: 12px;
+    border: 1px solid rgba(0,0,0,0.1);
+    border-radius: 16px;
+}
+
+.sign {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: #119d85;
+    color: white;
+    padding: 8px 16px;
+    border-radius: 12px;
+    cursor: pointer;
+}
+
+.signature-main {
+    min-height: 80px;
+    border-bottom: 2px solid #119d85;
+    margin-top: 20px;
+}
+
+/* Mantén tus estilos existentes y añade estos */
+.handwritten-signature, .handwritten-signature2 {
+    position: relative;
+    left: 0;
+    font-family: 'Dancing Script', cursive;
+    font-size: 2.5em;
+    color: #1a1a1a;
+    white-space: nowrap;
+    width: 100%;
+    text-align: center;
+}
+
+.firma-box {
+    position: relative;
+    margin: 20px 0;
+}
+
+.firma-linea {
+    border-bottom: 2px solid #119d85;
+    width: 80%;
+    margin: 0 auto;
+    position: relative;
+    top: -30px;
+}
+
+/* Ajustes finales para móvil */
+@media (max-width: 360px) {
+    .fecha {
+        font-size: 0.8rem;
+    }
+    .header h1 {
+        font-size: 1.2rem;
+    }
+    
+    .campo input, .campo select {
+        font-size: 15px;
+    }
+    
+    .handwritten-signature, .handwritten-signature2 {
+        font-size: 1.6em;
+    }
+    
+    .modal {
+        padding: 15px;
+    }
+}
+
+.btn {
+    display: block;
+    padding: 15px 35px;
+    background: #119d85;
+    color: white !important;
+    float: right;
+    margin-top: 40px !important;
+    border: none;
+    border-radius: 30px;
+    font-size: 1.1rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin: 20px 10px;
+    box-shadow: 0 4px 15px rgba(17, 157, 133, 0.3);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    text-decoration: none;
+}
+
+.btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(17, 157, 133, 0.4);
+    background: #0f8b76;
+}
+
+.btn:disabled {
+    background: #cccccc;
+    cursor: not-allowed;
+    box-shadow: none;
+}
+
+.btn:active {
+    transform: translateY(0);
+}
+
+
+
+/* Clearfix para contenedor */
+.botones-container::after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+#btnSiguiente {
+    transition: opacity 0.3s ease;
+    margin-left: 20px;
+}
+
+#btnSiguiente:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+#btnSiguiente.hidden {
+    display: none !important;
+}
+
+
+.confirmacion {
+    text-align: center;
+    padding: 40px;
+    border: 2px solid #119d85;
+    border-radius: 10px;
+    margin: 30px 0;
+    background: #f8f9fa;
+}
+
+.confirmacion .btn {
+    margin: 20px auto;
+    display: inline-block;
+}
+
+.nota {
+    font-size: 0.9em;
+    color: #666;
+    margin-top: 20px;
+}
+
+.campo-invalido {
+    border-color: #ff4444 !important;
+    animation: shake 0.5s;
+}
+
+@keyframes shake {
+    0% { transform: translateX(0); }
+    25% { transform: translateX(5px); }
+    50% { transform: translateX(-5px); }
+    75% { transform: translateX(5px); }
+    100% { transform: translateX(0); }
+}
+
+.activo {
+    opacity: 1;
+    pointer-events: all;
+    cursor: pointer;
+}
+
+.signature-canvas {
+    border: 2px solid #119d85;
+    border-radius: 5px;
+    width: 100%;
+    height: 150px;
+    background-color: #fff;
+    cursor: crosshair;
+}
+
+.hidden {
+    display: none;
+}
+
+.notyf__toast {
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+  }
+  
+  .notyf__message {
+    font-size: 14px;
+    padding: 8px 12px;
+  }

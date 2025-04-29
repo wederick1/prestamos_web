@@ -1,0 +1,356 @@
+/* Reset básico */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', system-ui, sans-serif;
+}
+
+/* Evitar scroll horizontal y habilitar scroll suave */
+html, body {
+    overflow-x: hidden;
+    scroll-behavior: smooth;
+}
+
+body {
+    background-color: #f8f9fa;
+    line-height: 1.6;
+    color: #333;
+}
+
+/* Banner principal */
+#banner {
+    padding: 8em 0 4em 0;
+    background: linear-gradient(135deg, rgba(17, 157, 133, 0.9), rgba(17, 53, 73, 0.9)),
+                url('/static/img/fondo.jpg') no-repeat center/cover;
+    text-align: center;
+    color: white;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+#banner .inner {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.logo {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    margin-bottom: 1.5em;
+    animation: fadeInDown 1s ease forwards;
+}
+
+/* Secciones */
+section {
+    max-width: 1200px;
+    margin: 4em auto;
+    padding: 3em 2em;
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+    transform: translateY(20px);
+    opacity: 0;
+    transition: transform 0.9s cubic-bezier(0.25, 0.46, 0.45, 0.94), opacity 0.6s ease;
+}
+
+section.visible {
+    transform: translateY(0);
+    opacity: 1;
+}
+
+h2 {
+    color: #119d85;
+    font-size: 2.2em;
+    margin-bottom: 1.2em;
+    text-align: center;
+    position: relative;
+}
+
+h2::after {
+    content: '';
+    display: block;
+    width: 60px;
+    height: 3px;
+    background: #119d85;
+    margin: 0.8em auto 1.5em;
+}
+
+/* Tarjetas de productos */
+.card-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2em;
+    margin-top: 2em;
+}
+
+.card {
+    background: #fff;
+    border-radius: 10px;
+    padding: 1.8em;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 6px 16px rgba(0,0,0,0.12);
+}
+
+.card img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 8px;
+    margin-bottom: 1.2em;
+}
+
+/* Pasos del proceso */
+.steps {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 2em;
+    margin-top: 3em;
+}
+
+.step {
+    text-align: center;
+    padding: 2em;
+}
+
+.step-number {
+    width: 50px;
+    height: 50px;
+    background: #119d85;
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.4em;
+    font-weight: bold;
+    margin: 0 auto 1em;
+}
+
+/* Formulario de contacto */
+.contact-form {
+    max-width: 800px;
+}
+
+.form-group {
+    margin-bottom: 1.5em;
+}
+
+input, textarea {
+    width: 100%;
+    padding: 12px 18px;
+    border: 2px solid #e0e0e0;
+    border-radius: 8px;
+    font-size: 1em;
+    transition: border-color 0.3s ease;
+}
+
+input:focus, textarea:focus {
+    border-color: #119d85;
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(17, 157, 133, 0.1);
+}
+
+/* Botones */
+.button {
+    display: inline-block;
+    padding: 14px 32px;
+    background: #119d85;
+    color: white;
+    text-decoration: none;
+    border-radius: 30px;
+    font-weight: 500;
+    transition: transform 0.3s ease, background 0.3s ease;
+    border: none;
+    cursor: pointer;
+}
+
+.button:hover {
+    background: #0d7a69;
+    transform: scale(1.05);
+}
+
+/* Footer */
+footer {
+    background: #2c3e50;
+    color: white;
+    text-align: center;
+    padding: 2em;
+    margin-top: 4em;
+}
+
+/* Animaciones */
+@keyframes fadeInDown {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    #banner {
+        padding: 5em 0 2em 0;
+    }
+
+    section {
+        margin: 2em auto;
+        padding: 1.5em;
+    }
+
+    .card-grid {
+        grid-template-columns: 1fr;
+    }
+
+    h2 {
+        font-size: 1.8em;
+    }
+}
+
+/* Botón flotante principal */
+.cta-button {
+    display: inline-block;
+    padding: 18px 45px;
+    background: #119d85;
+    color: white !important;
+    text-decoration: none;
+    border-radius: 50px;
+    font-weight: 600;
+    font-size: 1.1em;
+    transition: transform 0.3s ease, background 0.3s ease;
+    box-shadow: 0 8px 20px rgba(17, 157, 133, 0.3);
+    position: relative;
+    overflow: hidden;
+    margin-top: 2em;
+    animation: float 3s ease-in-out infinite;
+}
+
+.cta-button::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.1);
+    transform: translateX(-100%);
+    transition: transform 0.3s ease;
+}
+
+.cta-button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 12px 25px rgba(17, 157, 133, 0.4);
+    background: #0d7a69;
+}
+
+.cta-button:hover::after {
+    transform: translateX(0);
+}
+
+/* Animación flotante */
+@keyframes float {
+    0% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-10px);
+    }
+    100% {
+        transform: translateY(0);
+    }
+}
+
+/* Contenedor para centrar el botón */
+.button-container {
+    text-align: center;
+    margin-top: 3em;
+}
+
+/* Versión flotante fija en móvil */
+@media (max-width: 768px) {
+    .floating-mobile {
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        z-index: 1000;
+        animation: pulse 2s infinite;
+    }
+    
+    @keyframes pulse {
+        0% {
+            transform: scale(1);
+        }
+        50% {
+            transform: scale(1.1);
+        }
+        100% {
+            transform: scale(1);
+        }
+    }
+}
+
+/* Botón flotante */
+.floating-button {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    width: 50px;
+    height: 50px;
+    border: none;
+    border-radius: 50%;
+    background-color: #119d85;
+    color: white;
+    font-size: 24px;
+    cursor: pointer;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease, transform 0.3s ease;
+    z-index: 1000;
+}
+
+.floating-button.visible {
+    opacity: 1;
+    visibility: visible;
+}
+
+.floating-button:hover {
+    background-color: #0d7a69;
+    transform: scale(1.1) translateY(-5px);
+}
+
+/* Versión móvil del botón flotante */
+@media (max-width: 768px) {
+    .floating-button {
+        bottom: 20px;
+        right: 20px;
+        width: 45px;
+        height: 45px;
+        font-size: 20px;
+    }
+}
+
+
+
+  

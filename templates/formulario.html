@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Contrato de Préstamo - Delgado</title>
+    <link rel="stylesheet" href="/static/css/formulario.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/notyf@3/notyf.min.css">
+
+    <!-- FontAwesome (iconos) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+
+<body>
+    <div class="documento-container">
+        <div class="header">
+            <img src="/static/img/logo.jpg" alt="Logo" class="logo">
+            <h1>PRÉSTAMO DELGADO</h1>
+            <span id="fecha-solicitud" class="fecha" name="fecha_solicitud">Fecha:</span>
+        </div>
+
+        <h2>Solicitud de Préstamo</h2>
+        <form method="post" id="prestamoForm">
+        <!-- En tu formulario (dentro de <form id="prestamoForm">) -->
+            <input type="hidden" id="fecha-solicitud-input" name="fecha_solicitud">
+            <div class="seccion-info">
+                <div class="info-prestamo">
+                    <div class="campo">
+                        <label for="nombre-solicitante">Nombre del Solicitante:</label>
+                        <input type="text" id="nombre-solicitante" name="nombre-solicitante">
+                    </div>
+                    <div class="campo">
+                        <label for="telefono-solicitante">Teléfono:</label>
+                        <input type="text" id="telefono-solicitante" name="telefono-solicitante">
+                    </div>
+                    <div class="campo">
+                        <label for="Whatsapp">Tiene Whatsapp:</label>
+                        <select  name="Whatsapp">
+                            <option value="No tiene">No</option>
+                            <option value="Si tiene">Si</option>
+                        </select>
+                    </div>
+                    <div class="campo">
+                        <label for="tiempo-vivienda">Tiempo vivido en el lugar:</label>
+                        <input type="text" id="tiempo-vivienda" name="tiempo-vivienda">
+                    </div>
+                    <div class="campo">
+                        <label for="lugar-trabajo">Lugar de trabajo:</label>
+                        <input type="text" id="lugar-trabajo" name="lugar-trabajo">
+                    </div>
+                    <div class="campo">
+                        <label for="tipo-vivienda">Tipo de vivienda:</label>
+                        <select id="tipo-vivienda" name="tipo-vivienda">
+                            <option value="rentada">Rentada</option>
+                            <option value="propia">Propia</option>
+                        </select>
+                    </div>
+                    <div class="campo">
+                        <label for="correo">Correo:</label>
+                        <input type="email" id="correo" name="correo">
+                    </div>
+                    <div class="campo">
+                        <label for="ocupacion">Oficio Actual:</label>
+                        <input type="text" id="ocupacion" name="ocupacion">
+                    </div>
+                    <div class="campo">
+                        <label>Cédula:</label>
+                        <input type="text" name="cedula" required>
+                    </div>
+                    <div class="campo">
+                        <label for="tiempo-empresa">Tiempo en la empresa:</label>
+                        <input type="text" id="tiempo-empresa" name="tiempo-empresa">
+                    </div>
+                    <div class="campo">
+                        <label for="otros-ingresos">Otros ingresos:</label>
+                        <input type="number" id="otros-ingresos" name="otros-ingresos">
+                    </div>
+                    <div class="campo">
+                        <label for="estado-civil">Estado civil:</label>
+                        <select id="estado-civil" name="estado-civil">
+                            <option value="soltero">Soltero</option>
+                            <option value="casado">Casado</option>
+                        </select>
+                    </div>
+                    <div class="campo pareja">
+                        <label for="celular-conyuge">Celular Pareja:</label>
+                        <input type="text" id="celular-conyuge" name="celular-conyuge">
+                    </div>
+                    <div class="campo pareja">
+                        <label for="trabajo-conyuge">Trabajo Pareja:</label>
+                        <input type="text" id="trabajo-conyuge" name="trabajo-conyuge">
+                    </div>
+                    <div class="campo">
+                        <label for="dependientes">Dependientes:</label>
+                        <input type="text" id="dependientes" name="dependientes">
+                    </div>
+
+                </div>
+                <div class="info-cliente">
+
+                    <div class="campo">
+                        <label for="direccion-solicitante">Dirección del Solicitante:</label>
+                        <input type="text" id="direccion-solicitante" name="direccion-solicitante">
+                    </div>
+
+                    <div class="campo">
+                        <label for="lugar-vivienda">Lugar donde vive:</label>
+                        <input type="text" id="lugar-vivienda" name="lugar-vivienda">
+                    </div>
+
+
+                    <div class="campo">
+                        <label for="ubicacion-trabajo">Dirección del trabajo:</label>
+                        <input type="text" id="ubicacion-trabajo" name="ubicacion-trabajo">
+                    </div>
+                    <div class="campo">
+                        <label for="telefono-trabajo">Teléfono Trabajo:</label>
+                        <input type="text" id="telefono-trabajo" name="telefono-trabajo">
+                    </div>
+
+                    <div class="campo"class="campo-renta">
+                        <label for="pago-renta ">Gasto de renta:</label>
+                        <input type="number" id="pago-renta" class="renta" name="pago-renta">
+                    </div>
+                    <div class="campo">
+                        <label for="gastos-mensuales">Gastos mensuales:</label>
+                        <input type="number" id="gastos-mensuales" name="gastos-mensuales">
+                    </div>
+
+
+                    <div class="campo">
+                        <label for="horario-trabajo">Horario del trabajo:</label>
+                        <input type="text" id="horario-trabajo" name="horario-trabajo">
+                    </div>
+
+                    <div class="campo">
+                        <label for="ingresos-mensuales">Ingresos mensuales:</label>
+                        <input type="number" id="ingresos-mensuales" name="ingresos-mensuales">
+                    </div>
+
+                    <div class="campo">
+                        <label for="total-ingresos">Total ingresos:</label>
+                        <input type="text" id="total-ingresos" name="total-ingresos" readonly>
+                    </div>
+
+                    <div class="campo pareja">
+                        <label for="conyuge">Pareja:</label>
+                        <input type="text" id="conyuge" name="conyuge">
+                    </div>
+
+
+                    <div class="campo pareja">
+                        <label for="direccion-trabajo-conyuge">Dirección trabajo Pareja:</label>
+                        <input type="text" id="direccion-trabajo-conyuge" name="direccion-trabajo-conyuge">
+                    </div>
+                    <div class="campo pareja">
+                        <label for="telefono-trabajo-conyuge">Teléfono trabajo Pareja:</label>
+                        <input type="text" id="telefono-trabajo-conyuge" name="telefono-trabajo-conyuge">
+                    </div>
+
+                    <div class="campo">
+                        <label for="monto-solicitado">Monto Solicitado (RD$):</label>
+                        <input type="number" id="monto-solicitado" name="monto-solicitado" max="5000" >
+                    </div>
+                </div>
+            </div>
+
+            <h3>Referencias Personales</h3>
+            <div class="seccion-info">
+
+                <div class="info-prestamo">
+                    <div class="campo">
+                        <label for="nombre-referencia-personal-1">Nombre:</label>
+                        <input type="text" id="nombre-referencia-personal-1" name="nombre-referencia-personal-1">
+                    </div>
+                    <div class="campo">
+                        <label for="nombre-referencia-personal-2">Nombre:</label>
+                        <input type="text" id="nombre-referencia-personal-2" name="nombre-referencia-personal-2">
+                    </div>
+                </div>
+
+                <div class="info-cliente">
+                    <div class="campo">
+                        <label for="telefono-referencia-personal-1">Teléfono:</label>
+                        <input type="text" id="telefono-referencia-personal-1" name="telefono-referencia-personal-1">
+                    </div>
+                    <div class="campo">
+                        <label for="telefono-referencia-personal">Teléfono:</label>
+                        <input type="text" id="telefono-referencia-personal-2" name="telefono-referencia-personal-2">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Referencias Familiares (parte del formulario) -->
+            <h3>Referencias Familiares</h3>
+            <div class="seccion-info">
+                <div class="info-prestamo">
+                    <div class="campo">
+                        <label for="nombre-referencia-familiar-1">Nombre 1:</label>
+                        <input type="text" id="nombre-referencia-familiar-1" name="nombre_referencia_familiar_1">
+                    </div>
+                    <div class="campo">
+                        <label for="nombre-referencia-familiar-2">Nombre 2:</label>
+                        <input type="text" id="nombre-referencia-familiar-2" name="nombre_referencia_familiar_2">
+                    </div>
+                </div>
+                <div class="info-cliente">
+                    <div class="campo">
+                        <label for="telefono-referencia-familiar-1">Teléfono 1:</label>
+                        <input type="text" id="telefono-referencia-familiar-1" name="telefono_referencia_familiar_1">
+                    </div>
+                    <div class="campo">
+                        <label for="telefono-referencia-familiar-2">Teléfono 2:</label>
+                        <input type="text" id="telefono-referencia-familiar-2" name="telefono_referencia_familiar_2">
+                    </div>
+                </div>
+            </div>
+
+
+            <h3>Referencias Comerciales</h3>
+            <div class="seccion-info">
+
+                <div class="info-prestamo">
+                    <div class="campo">
+                        <label for="nombre-referencia-comercial">Nombre:</label>
+                        <input type="text" id="nombre-referencia-comercial" name="nombre-referencia-comercial">
+                    </div>
+                </div>
+
+                <div class="info-cliente">
+                    <div class="campo">
+                        <label for="telefono-referencia-comercial">Teléfono:</label>
+                        <input type="text" id="telefono-referencia-comercial" name="telefono-referencia-comercial">
+                    </div>
+                </div>
+            </div>
+
+
+            <h3>Otros Datos</h3>
+            <div class="seccion-info">
+
+                <div class="info-prestamo">
+                    <div class="campo">
+                        <label for="para-que-necesita">¿Para qué lo necesita?</label>
+                        <input type="text" id="para-que-necesita" name="para-que-necesita">
+                    </div>
+                    <div class="campo">
+                        <label for="prestamos-activos">Prestamos activos:</label>
+                        <select id="prestamos-activos" name="prestamos-activos">
+                            <option value="0">0</option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                        </select>
+                    </div>
+
+                </div>
+
+                <div class="info-cliente">
+                    <div class="campo">
+                        <label for="banco"> En que banco:</label>
+                        <input type="text" id="banco" name="banco">
+                    </div>
+ 
+                </div>
+            </div>
+
+
+            <div class="botones-container">
+                <button class="btn" id="btnSiguiente" type="submit">Siguiente</button>
+                <button type="button" class="btn " id="clearSignature">Borrar Firma</button>
+            </div>
+
+            <div class="firmas">
+                <div class="firma-box">
+                    <canvas id="signaturePad" class="signature-canvas"></canvas>
+                    <div class="firma-linea"></div>
+                    <p>Firma del Solicitante</p>
+                </div>
+                <div class="firma-box">
+                    <div class="handwritten-signature2">Elvis Delgado</div>
+                    <div class="firma-linea"></div>
+                    <p>Firma del Fiador</p>
+                </div>
+            </div>
+            
+            <input type="hidden" id="firmaDigital" name="firmaDigital">
+            <input type="text" class="hidden" id="nombreFirma" readonly>
+            <input type="hidden" name="fecha-solicitud" id="fecha-solicitud-input">
+        </form>
+
+        <div class="contacto">
+            <p>Tel: 809-555-1234 | Email: prestamos@delgado.com | Dirección: Av. Principal 456, Santo Domingo</p>
+        </div>
+    </div>
+
+
+
+
+
+    <script src="/static/js/formulario.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/signature_pad@4.0.0/dist/signature_pad.umd.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/notyf@3/notyf.min.js"></script>
+    
+</body>
+
+</html>
+

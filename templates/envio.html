@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Contrato Generado</title>
+    <link rel="stylesheet" href="/static/css/formulario.css">
+</head>
+<body>
+    <div class="documento-container">
+        <div class="header">
+            <img src="/static/img/logo.jpg" alt="Logo" class="logo">
+            <h1>PRÉSTAMO DELGADO</h1>
+        </div>
+
+        <h2>¡El Documento ha sido Enviado Exitosamente!</h2>
+        
+        <div class="confirmacion">
+            <p>Estimado/a usuario/a:</p>
+            <p>
+
+                Su mensaje ha sido enviado con éxito.
+                Le responderemos en un plazo máximo de 48 horas.
+                
+                Gracias por su confianza. Si tiene alguna otra consulta, no dude en contactarnos.
+                <br><br>
+                
+                Saludos cordiales. <strong>Prestamos Delgado</strong></p>
+            <a href="{{ url_for('home.home') }}" class="btn">
+                Ir a Inicio
+            </a>
+            <p class="nota">"Tu mejor opción financiera"</p>
+        </div>
+    </div>
+</body>
+</html>

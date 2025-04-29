@@ -1,0 +1,46 @@
+# Entorno virtual
+venv/
+env/
+ENV/
+.venv/
+.python-version
+
+# Archivos de Python compilados
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Archivos del sistema
+.DS_Store
+Thumbs.db
+
+# Archivos de configuración de editores
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+
+# Base de datos temporal (si usas SQLite para pruebas)
+*.sqlite3
+
+# Archivos de logs
+*.log
+
+# Archivos de salida de Flask
+instance/
+*.pid
+
+# Configuración local/env
+.env
+.env.*
+
+# Otros
+*.bak
+*.swp
+*.tmp
+
+# Node.js (por si usas frontend con npm)
+node_modules/
+
+# HTML estáticos generados (si los tienes dinámicos)
+staticfiles/

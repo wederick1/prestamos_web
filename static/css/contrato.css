@@ -1,0 +1,411 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+/* Variables */
+:root {
+  --primary-color: #2D3B4E;
+  --secondary-color: #119D85;
+  --background-light: #F9FAFB;
+  --border-color: #E5E7EB;
+  --transition: all 0.2s ease;
+}
+
+/* Reset y estilos base */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Inter', sans-serif;
+  background-color: var(--background-light);
+  color: #374151;
+  line-height: 1.5;
+  padding: 1rem;
+}
+
+.documento-container {
+  background: white;
+  border-radius: 8px;
+  border: 1px solid var(--border-color);
+  margin: 0 auto;
+  max-width: 900px;
+  padding: 1.5rem;
+}
+
+/* Header */
+.header {
+  position: relative;
+  border-bottom: 1px solid #ddd;
+  padding-bottom: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.fecha {
+  position: absolute;
+  right: 0;
+  top: 0;
+  font-weight: normal;
+}
+
+.logo {
+  height: 60px;
+  margin-right: 1rem;
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.header h1 {
+  display: inline-block;
+  vertical-align: middle;
+  margin: 0;
+}
+
+/* Contenido principal */
+h2 {
+  font-size: 1.25rem;
+  color: var(--primary-color);
+  margin: 1rem 0;
+}
+
+h3 {
+  font-size: 1rem;
+  color: var(--primary-color);
+  margin: 0.75rem 0;
+}
+
+.seccion-info {
+  background: var(--background-light);
+  border-radius: 6px;
+  padding: 1rem;
+  margin: 1rem 0;
+}
+
+/* Formularios */
+input[type="text"],
+input[type="number"] {
+  width: 100%;
+  padding: 0.75rem;
+  border: 2px solid var(--border-color);
+  border-radius: 6px;
+  margin: 0.5rem 0;
+  font-size: 1rem;
+}
+
+/* Checkboxes */
+.checkbox-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin: 1rem 0;
+}
+
+.checkbox-option {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+input[type="checkbox"] {
+  width: 20px;
+  height: 20px;
+  border: 2px solid var(--border-color);
+  border-radius: 4px;
+  appearance: none;
+  flex-shrink: 0;
+}
+
+input[type="checkbox"]:checked {
+  background: var(--secondary-color);
+  border-color: var(--secondary-color);
+  position: relative;
+}
+
+input[type="checkbox"]:checked::after {
+  content: "✓";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: white;
+  font-weight: bold;
+}
+
+/* Tablas */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1rem 0;
+  overflow-x: auto;
+  display: block;
+}
+
+th, td {
+  padding: 0.75rem;
+  text-align: left;
+  border-bottom: 1px solid var(--border-color);
+  white-space: nowrap;
+  min-width: 100px;
+}
+
+th {
+  background-color: var(--primary-color);
+  color: white;
+}
+
+/* Firmas */
+.firma-line {
+  border-bottom: 2px solid var(--primary-color);
+  width: 100%;
+  margin: 1.5rem 0;
+  position: relative;
+  padding-bottom: 0.5rem;
+}
+
+.firma-line::after {
+  content: "Firma";
+  position: absolute;
+  bottom: -1.25rem;
+  left: 0;
+  font-size: 0.75rem;
+  color: #6B7280;
+}
+
+/* Media Queries */
+@media (min-width: 413px) {
+  .header {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .logo {
+    max-width: 100px;
+  }
+  
+  .header h1 {
+    font-size: 1.75rem;
+  }
+  
+  h2 {
+    font-size: 1.5rem;
+  }
+}
+
+@media (min-width: 728px) {
+  body {
+    padding: 2rem;
+  }
+  
+  .documento-container {
+    padding: 2.5rem;
+  }
+  
+  .header h1 {
+    font-size: 2rem;
+  }
+  
+  .fecha {
+    font-size: 0.875rem;
+  }
+  
+  table {
+    display: table;
+    overflow-x: visible;
+  }
+}
+
+@media (min-width: 900px) {
+  .documento-container {
+    padding: 3rem;
+  }
+}
+
+/* Mejoras para móviles pequeños (<= 213px) */
+@media (max-width: 213px) {
+  body {
+    padding: 0.5rem;
+  }
+  
+  .documento-container {
+    padding: 0.75rem;
+    border-radius: 0;
+  }
+  
+  .header h1 {
+    font-size: 1.25rem;
+  }
+  
+  input[type="text"],
+  input[type="number"] {
+    padding: 0.5rem;
+  }
+  
+  th, td {
+    padding: 0.5rem;
+    font-size: 0.875rem;
+  }
+}
+
+.dato {
+  font-weight: bold;
+  text-decoration: underline;
+  padding: 2px 5px;
+}
+
+
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1000;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.modal-content {
+  background-color: #fff;
+  margin: 10% auto;
+  padding: 20px;
+  border-radius: 8px;
+  width: 50%;
+  text-align: center;
+}
+
+.close-btn {
+  float: right;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+.modal-buttons {
+  margin-top: 20px;
+}
+
+.modal-buttons .btn {
+  margin: 5px;
+  padding: 10px 20px;
+  cursor: pointer;
+}
+
+.firmas {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 40px;
+  padding-top: 30px;
+  border-top: 2px solid #119d85;
+}
+
+.firma-box {
+  text-align: center;
+  width: 40%;
+}
+
+.firma-linea {
+  border-bottom: 2px solid #119d85;
+  width: 80%;
+  margin: 0 auto 10px;
+  height: 50px;
+}
+
+.handwritten-signature, .handwritten-signature2 {
+  font-family: 'Dancing Script', cursive;
+  font-size: 2.5em;
+  color: #1a1a1a;
+  position: absolute;
+  white-space: nowrap;
+}
+
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1000;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.modal-content {
+  background-color: #fff;
+  margin: 10% auto;
+  padding: 20px;
+  border-radius: 8px;
+  width: 50%;
+  text-align: center;
+}
+
+.campo {
+  margin-bottom: 15px;
+}
+
+.campo label {
+  display: block;
+  font-weight: bold;
+}
+
+.close-btn {
+  position: absolute; /* Posición absoluta dentro del modal */
+  top: 10px; /* Separación desde la parte superior */
+  right: 15px; /* Separación desde la derecha */
+  color: #aaa;
+  font-size: 28px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: color 0.3s ease; /* Transición para el hover */
+}
+
+.close-btn:hover {
+  color: #e74c3c; /* Cambia a rojo al pasar el mouse */
+}
+
+.sign-btn {
+  background: #119d85;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  margin: 5px;
+}
+
+.sign-btn:hover {
+  background: #0e7a68;
+}
+
+.firma-input {
+    width: 80%;
+    height: 50px;
+    font-family: 'Dancing Script', cursive;
+    font-size: 1.5em;
+    color: #1a1a1a;
+    text-align: center;
+    margin: 0 auto 10px;
+    resize: none;
+    outline: none;
+}
+.firma-input::placeholder {
+    color: #ccc;
+    font-style: italic;
+}
+
+select.dato {
+  padding: 8px 12px;
+  font-size: 14px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: #f9f9f9;
+  color: #333;
+  cursor: pointer;
+  margin-left: 5px;
+  transition: all 0.3s ease;
+}
+
+select.dato:focus {
+  border-color: #2ecc71; /* Verde mar */
+  outline: none;
+  background-color: #eafaf1; /* Fondo verde claro */
+}

@@ -1,0 +1,53 @@
+{% extends "admin.html" %}
+
+{% block title %}Clientes{% endblock %}
+
+{% block styles %}
+<link rel="stylesheet" href="/static/css/clientes.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
+{% endblock %}
+
+{% block content %}
+<main>
+    <h1>Clientes</h1>
+
+    <div class="table-container">
+        <table id="clientes" class="display" style="width:100%">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Nombre</th>
+                    <th>Email</th>
+                    <th>Teléfono</th>
+                    <th>Cedula</th> <!-- Nuevo encabezado -->
+                    <th>Acciones</th> <!-- Nuevo encabezado -->
+                </tr>
+            </thead>
+            <tbody>
+                <!-- El cuerpo de la tabla se llenará dinámicamente con JavaScript -->
+            </tbody>
+        </table>
+
+
+        <div id="modal" class="modal">
+            <div class="modal-content">
+                <span class="close-btn">&times;</span>
+                <h1 class="modal-title">Clientes</h1>
+                <div id="modal-body">
+                   
+                    <!-- Aquí se llenarán los datos del cliente -->
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+{% endblock %}
+
+{% block scripts %}
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="/static/js/clientes.js"></script>
+{% endblock %}
+
+
+
+

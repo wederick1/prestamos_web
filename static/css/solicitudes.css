@@ -1,0 +1,73 @@
+
+
+.view-client-btn {
+    padding: 5px 20px;
+    background-color: #17a2b8;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    text-decoration: none;
+}
+
+.add-client-btn:hover {
+    background-color: #138496;
+}
+
+.table-container {
+    margin-top: 20px;
+}
+
+.table-container button {
+    padding: 5px 10px;
+    margin: 2px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+
+.view-field {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.view-field label {
+    width: 100px;
+    font-weight: bold;
+}
+
+.view-field p {
+    margin: 0;
+}
+
+/* Estilos para botones */
+.aprobar-btn {
+    background-color: #28a745;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-left: 5px;
+}
+
+.aprobar-btn:hover {
+    background-color: #218838;
+}
+
+.view-client-btn {
+    background-color: #007bff;
+    color: white;
+    padding: 5px 10px;
+    border-radius: 4px;
+    text-decoration: none;
+}
+
+.view-client-btn:hover {
+    background-color: #0056b3;
+    color: white;
+}
