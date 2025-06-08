@@ -23,36 +23,43 @@
 
         <h2>Solicitud de Préstamo</h2>
         <form method="post" id="prestamoForm">
-        <!-- En tu formulario (dentro de <form id="prestamoForm">) -->
+            <!-- En tu formulario (dentro de <form id="prestamoForm">) -->
             <input type="hidden" id="fecha-solicitud-input" name="fecha_solicitud">
+
             <div class="seccion-info">
                 <div class="info-prestamo">
                     <div class="campo">
-                        <label for="nombre-solicitante">Nombre del Solicitante:</label>
-                        <input type="text" id="nombre-solicitante" name="nombre-solicitante">
+                        <label for="nombre-solicitante">Nombre Completo del Solicitante:</label>
+                        <input type="text" id="nombre-solicitante" name="nombre-solicitante"
+                            placeholder="Nombre completo" required
+                            data-tip="Ingresa tu nombre completo, como aparece en tu cédula.">
                     </div>
-                    <div class="campo">
-                        <label for="telefono-solicitante">Teléfono:</label>
-                        <input type="text" id="telefono-solicitante" name="telefono-solicitante">
+                    <div class="campo tooltip">
+                        <label for="telefono-solicitante">Numero Teléfono:</label>
+                        <input type="text" id="telefono-solicitante" name="telefono-solicitante"
+                            placeholder="Numero Telefonico">
+                        <span class="tooltiptext">Ingresa un número válido para contactarte.</span>
                     </div>
                     <div class="campo">
                         <label for="Whatsapp">Tiene Whatsapp:</label>
-                        <select  name="Whatsapp">
+                        <select name="Whatsapp">
                             <option value="No tiene">No</option>
                             <option value="Si tiene">Si</option>
                         </select>
                     </div>
                     <div class="campo">
                         <label for="direccion-solicitante">Dirección del Solicitante:</label>
-                        <input type="text" id="direccion-solicitante" name="direccion-solicitante">
+                        <input type="text" id="direccion-solicitante" name="direccion-solicitante" placeholder="Sector"
+                            data-tip="Ingresa el sector o barrio donde resides.">
                     </div>
                     <div class="campo">
                         <label for="lugar-vivienda">Lugar donde vive:</label>
-                        <input type="text" id="lugar-vivienda" name="lugar-vivienda">
+                        <input type="text" id="lugar-vivienda" name="lugar-vivienda" placeholder="Calle, No. Casa"
+                            data-tip="Especifica la calle y número de tu casa o apartamento.">
                     </div>
                     <div class="campo">
                         <label for="tiempo-vivienda">Tiempo vivido en el lugar:</label>
-                        <input type="text" id="tiempo-vivienda" name="tiempo-vivienda">
+                        <input type="text" id="tiempo-vivienda" name="tiempo-vivienda" placeholder="Ej. 2 años">
                     </div>
                     <div class="campo">
                         <label for="tipo-vivienda">Tipo de vivienda:</label>
@@ -61,54 +68,60 @@
                             <option value="rentada">Rentada</option>
                         </select>
                     </div>
-                    <div class="campo"class="campo-renta">
+                    <div class="campo" class="campo-renta">
                         <label for="pago-renta ">Gasto de renta:</label>
-                        <input type="number" id="pago-renta" class="renta" name="pago-renta">
+                        <input type="number" id="pago-renta" class="renta" name="pago-renta" placeholder="Ej. 2000">
                     </div>
                     <div class="campo">
                         <label for="ocupacion">Oficio Actual:</label>
-                        <input type="text" id="ocupacion" name="ocupacion">
+                        <input type="text" id="ocupacion" name="ocupacion" placeholder="Ej. Cajer@, Abogado, etc."
+                            data-tip="Indica tu ocupación actual, por ejemplo: Cajero, Abogado, etc.">
                     </div>
                     <div class="campo">
                         <label for="lugar-trabajo">Lugar de trabajo:</label>
-                        <input type="text" id="lugar-trabajo" name="lugar-trabajo">
+                        <input type="text" id="lugar-trabajo" name="lugar-trabajo" placeholder="Nombre de la empresa"
+                            data-tip="Escribe el nombre del lugar o empresa donde trabajas.">
                     </div>
                     <div class="campo">
                         <label for="ubicacion-trabajo">Dirección del trabajo:</label>
-                        <input type="text" id="ubicacion-trabajo" name="ubicacion-trabajo">
+                        <input type="text" id="ubicacion-trabajo" name="ubicacion-trabajo" placeholder="No. Calle">
                     </div>
                     <div class="campo">
                         <label for="horario-trabajo">Horario del trabajo:</label>
-                        <input type="text" id="horario-trabajo" name="horario-trabajo">
+                        <input type="text" id="horario-trabajo" name="horario-trabajo"
+                            placeholder="Ej. 8:00 am - 5:00 pm">
                     </div>
                     <div class="campo">
                         <label for="telefono-trabajo">Teléfono Trabajo:</label>
-                        <input type="text" id="telefono-trabajo" name="telefono-trabajo">
+                        <input type="text" id="telefono-trabajo" name="telefono-trabajo" placeholder="Ej. 809-123-4567">
                     </div>
                     <div class="campo">
                         <label for="tiempo-empresa">Tiempo en la empresa:</label>
-                        <input type="text" id="tiempo-empresa" name="tiempo-empresa">
+                        <input type="text" id="tiempo-empresa" name="tiempo-empresa" placeholder="Ej. 2 años">
                     </div>
                     <div class="campo">
                         <label for="correo">Correo:</label>
-                        <input type="email" id="correo" name="correo">
+                        <input type="email" id="correo" name="correo" placeholder="Lucas@gmail.com">
                     </div>
 
                     <div class="campo">
                         <label>Cédula:</label>
-                        <input type="text" name="cedula" required>
+                        <input type="text" name="cedula" required placeholder="Ej. 001-234567-1" id="cedula"
+                            class="cedula">
                     </div>
                     <div class="campo">
                         <label for="ingresos-mensuales">Ingresos mensuales:</label>
-                        <input type="number" id="ingresos-mensuales" name="ingresos-mensuales">
+                        <input type="number" id="ingresos-mensuales" name="ingresos-mensuales" placeholder="Ej. 20000"
+                            required>
                     </div>
                     <div class="campo">
                         <label for="otros-ingresos">Otros ingresos:</label>
-                        <input type="number" id="otros-ingresos" name="otros-ingresos">
+                        <input type="number" id="otros-ingresos" name="otros-ingresos" placeholder="Ej. 5000">
                     </div>
                     <div class="campo">
                         <label for="gastos-mensuales">Gastos mensuales:</label>
-                        <input type="number" id="gastos-mensuales" name="gastos-mensuales">
+                        <input type="number" id="gastos-mensuales" name="gastos-mensuales" placeholder="Ej. 15000"
+                            required>
                     </div>
                     <div class="campo">
                         <label for="total-ingresos">Total ingresos:</label>
@@ -122,32 +135,46 @@
                         </select>
                     </div>
                     <div class="campo pareja">
-                        <label for="conyuge">Pareja Nombre:</label>
-                        <input type="text" id="conyuge" name="conyuge">
+                        <label for="conyuge">Nombre Pareja:</label>
+                        <input type="text" id="conyuge" name="conyuge" placeholder="Nombre Pareja">
                     </div>
                     <div class="campo pareja">
                         <label for="celular-conyuge">Celular Pareja:</label>
-                        <input type="text" id="celular-conyuge" name="celular-conyuge">
+                        <input type="text" id="celular-conyuge" name="celular-conyuge" placeholder="Ej. 809-123-4567">
                     </div>
                     <div class="campo pareja">
                         <label for="trabajo-conyuge">Trabajo Pareja:</label>
-                        <input type="text" id="trabajo-conyuge" name="trabajo-conyuge">
+                        <input type="text" id="trabajo-conyuge" name="trabajo-conyuge"
+                            placeholder="Nombre de la empresa de la pareja">
                     </div>
                     <div class="campo pareja">
                         <label for="direccion-trabajo-conyuge">Dirección trabajo Pareja:</label>
-                        <input type="text" id="direccion-trabajo-conyuge" name="direccion-trabajo-conyuge">
+                        <input type="text" id="direccion-trabajo-conyuge" name="direccion-trabajo-conyuge"
+                            placeholder="No. Calle y nombre">
                     </div>
                     <div class="campo pareja">
                         <label for="telefono-trabajo-conyuge">Teléfono trabajo Pareja:</label>
-                        <input type="text" id="telefono-trabajo-conyuge" name="telefono-trabajo-conyuge">
+                        <input type="text" id="telefono-trabajo-conyuge" name="telefono-trabajo-conyuge"
+                            placeholder="Ej. 809-123-4567">
                     </div>
                     <div class="campo">
                         <label for="dependientes">Dependientes:</label>
-                        <input type="text" id="dependientes" name="dependientes">
+                        <input type="text" id="dependientes" name="dependientes"
+                            placeholder="Ej. 2 hijos, 1 madre, etc.">
+                    </div>
+                    <div class="campo">
+                        <label for="garantia">Garantía del préstamo:</label>
+                        <select id="garantia" name="garantia" class="dato">
+                            <option value="ninguna" selected>Ninguna</option>
+                            <option value="hipotecaria">Garantía hipotecaria</option>
+                            <option value="personal">Garantía personal</option>
+                            <option value="prendaria">Garantía prendaria</option>
+                        </select>
                     </div>
                     <div class="campo">
                         <label for="monto-solicitado">Monto Solicitado (RD$):</label>
-                        <input type="number" id="monto-solicitado" name="monto-solicitado" max="5000" >
+                        <input type="number" id="monto-solicitado" name="monto-solicitado" placeholder="Ej. 20000"
+                            required>
                     </div>
 
                 </div>
@@ -159,19 +186,23 @@
                 <div class="info-prestamo">
                     <div class="campo">
                         <label for="nombre-referencia-personal-1">Nombre 1:</label>
-                        <input type="text" id="nombre-referencia-personal-1" name="nombre-referencia-personal-1">
+                        <input type="text" id="nombre-referencia-personal-1" name="nombre-referencia-personal-1"
+                            placeholder="Ej. Juan Pérez">
                     </div>
                     <div class="campo">
                         <label for="telefono-referencia-personal-1">Teléfono 1:</label>
-                        <input type="text" id="telefono-referencia-personal-1" name="telefono-referencia-personal-1">
+                        <input type="text" id="telefono-referencia-personal-1" name="telefono-referencia-personal-1"
+                            placeholder="Ej. 809-123-4567">
                     </div>
                     <div class="campo">
                         <label for="nombre-referencia-personal-2">Nombre 2:</label>
-                        <input type="text" id="nombre-referencia-personal-2" name="nombre-referencia-personal-2">
+                        <input type="text" id="nombre-referencia-personal-2" name="nombre-referencia-personal-2"
+                            placeholder="Ej. María Gómez">
                     </div>
                     <div class="campo">
                         <label for="telefono-referencia-personal">Teléfono 2:</label>
-                        <input type="text" id="telefono-referencia-personal-2" name="telefono-referencia-personal-2">
+                        <input type="text" id="telefono-referencia-personal-2" name="telefono-referencia-personal-2"
+                            placeholder="Ej. 809-987-6543">
                     </div>
 
                 </div>
@@ -183,19 +214,23 @@
                 <div class="info-prestamo">
                     <div class="campo">
                         <label for="nombre-referencia-familiar-1">Nombre 1:</label>
-                        <input type="text" id="nombre-referencia-familiar-1" name="nombre_referencia_familiar_1">
+                        <input type="text" id="nombre-referencia-familiar-1" name="nombre_referencia_familiar_1"
+                            placeholder="Ej. Juan Pérez">
                     </div>
                     <div class="campo">
                         <label for="telefono-referencia-familiar-1">Teléfono 1:</label>
-                        <input type="text" id="telefono-referencia-familiar-1" name="telefono_referencia_familiar_1">
+                        <input type="text" id="telefono-referencia-familiar-1" name="telefono_referencia_familiar_1"
+                            placeholder="Ej. 809-123-4567">
                     </div>
                     <div class="campo">
                         <label for="nombre-referencia-familiar-2">Nombre 2:</label>
-                        <input type="text" id="nombre-referencia-familiar-2" name="nombre_referencia_familiar_2">
+                        <input type="text" id="nombre-referencia-familiar-2" name="nombre_referencia_familiar_2"
+                            placeholder="Ej. María Gómez">
                     </div>
                     <div class="campo">
                         <label for="telefono-referencia-familiar-2">Teléfono 2:</label>
-                        <input type="text" id="telefono-referencia-familiar-2" name="telefono_referencia_familiar_2">
+                        <input type="text" id="telefono-referencia-familiar-2" name="telefono_referencia_familiar_2"
+                            placeholder="Ej. 809-987-6543">
                     </div>
 
                 </div>
@@ -208,11 +243,13 @@
                 <div class="info-prestamo">
                     <div class="campo">
                         <label for="nombre-referencia-comercial">Nombre:</label>
-                        <input type="text" id="nombre-referencia-comercial" name="nombre-referencia-comercial">
+                        <input type="text" id="nombre-referencia-comercial" name="nombre-referencia-comercial"
+                            placeholder="Ej. Empresa XYZ">
                     </div>
                     <div class="campo">
                         <label for="telefono-referencia-comercial">Teléfono:</label>
-                        <input type="text" id="telefono-referencia-comercial" name="telefono-referencia-comercial">
+                        <input type="text" id="telefono-referencia-comercial" name="telefono-referencia-comercial"
+                            placeholder="Ej. 809-555-1234">
                     </div>
                 </div>
             </div>
@@ -227,18 +264,41 @@
                         <input type="text" id="para-que-necesita" name="para-que-necesita">
                     </div>
                     <div class="campo">
-                        <label for="prestamos-activos">Prestamos activos:</label>
+                        <label for="prestamos-activos">Tienes préstamos activos:</label>
                         <select id="prestamos-activos" name="prestamos-activos">
                             <option value="0">0</option>
                             <option value="1">1</option>
                             <option value="2">2</option>
                         </select>
                     </div>
-                    <div class="campo">
-                        <label for="banco"> En que banco:</label>
+
+                    <div class="campo" id="campo-banco" style="display: none;">
+                        <label for="banco">¿En qué banco?</label>
                         <input type="text" id="banco" name="banco">
                     </div>
+                </div>
+            </div>
 
+
+            <h3>Ubicación</h3>
+            <div class="seccion-info">
+                <div class="seccion-medio">
+                    <input type="hidden" id="casaCoordenadas" name="casa_coordenadas">
+                    <input type="hidden" id="trabajoCoordenadas" name="trabajo_coordenadas">
+
+                    <label for="ubicacion_casa">
+                        <input type="checkbox" name="grupo-checkbox" id="ubicacion_casa" data-tipo="casa"
+                            onchange="obtenerUbicacion(this)">
+                        Ubicación Casa:
+                        <span class="status-indicator" id="casaStatus"></span>
+                    </label><br>
+
+                    <label for="ubicacion_trabajo">
+                        <input type="checkbox" name="grupo-checkbox" id="ubicacion_trabajo" data-tipo="trabajo"
+                            onchange="obtenerUbicacion(this)">
+                        Ubicación Trabajo:
+                        <span class="status-indicator" id="trabajoStatus"></span>
+                    </label>
                 </div>
             </div>
 
@@ -246,7 +306,9 @@
             <div class="botones-container">
                 <button class="btn" id="btnSiguiente" type="submit">Siguiente</button>
                 <button type="button" class="btn " id="clearSignature">Borrar Firma</button>
+                <button type="button" class="btn" id="btnCedula" onclick="openModal()">Subir Cédula</button>
             </div>
+            <span> <strong>Nota:</strong> Por favor realizar firma como en su cedula</span>
 
             <div class="firmas">
                 <div class="firma-box">
@@ -260,14 +322,61 @@
                     <p>Firma del Fiador</p>
                 </div>
             </div>
-            
+
             <input type="hidden" id="firmaDigital" name="firmaDigital">
-            <input type="text" class="hidden" id="nombreFirma" readonly>
-            <input type="hidden" name="fecha-solicitud" id="fecha-solicitud-input">
+            <input type="hidden" id="frenteBase64" name="frenteBase64">
+            <input type="hidden" id="reversoBase64" name="reversoBase64">
+
+            <!-- Cedula Modal -->
+            <div id="modalBackdrop" class="modal-backdrop">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h3>Subir documentos de identidad</h3>
+                        <span onclick="closeModal()">&times;</span>
+                    </div>
+                    <div class="modal-body">
+                        <div class="upload-section">
+                            <div class="upload-area" onclick="document.getElementById('frontInput').click()">
+                                <span class="plus-icon"></span>
+                                <img id="frontPreview" class="thumbnail" src="#" alt="Vista previa frontal">
+                                <p>Haz clic para subir frente de la cédula</p>
+                                <input type="file" id="frontInput" accept="image/*" hidden
+                                    onchange="previewImage(event, 'frontPreview', 'frenteBase64')">
+                            </div>
+                            <div class="upload-area" onclick="document.getElementById('backInput').click()">
+                                <span class="plus-icon"></span>
+                                <img id="backPreview" class="thumbnail" src="#" alt="Vista previa trasera">
+                                <p>Haz clic para subir reverso de la cédula</p>
+                                <input type="file" id="backInput" accept="image/*" hidden
+                                    onchange="previewImage(event, 'backPreview', 'reversoBase64')">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button onclick="validarYcerrar()">Listo!</button>
+                        <button onclick="closeModal()">Cancelar</button>
+                    </div>
+                </div>
+            </div>
+
+
+
+
+
+
+
         </form>
 
         <div class="contacto">
-            <p>Tel: 809-370-9837 | Email: prestamosdelgado@gmail.com | Dirección: Estamos frente a óptica Jarabacoa segundo nivel plaza peralta.</p>
+            <p>Tel: 809-370-9837 | Email: prestamosdelgado@gmail.com | Dirección: Estamos frente a óptica Jarabacoa
+                segundo nivel plaza peralta.</p>
+
+            <p>
+               <strong>Nota:</strong>  Autorizo libre y voluntariamente al acreedor a consultar y verificar las informaciones
+                suministradas en esta solicitud de préstamo. Además, en caso de que el préstamo sea aprobado, autorizo
+                al acreedor a reportar cualquier atraso en los pagos, de existir, ante los distintos burós de crédito.
+            </p>
+
         </div>
     </div>
 
@@ -278,10 +387,44 @@
     <script src="/static/js/formulario.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/signature_pad@4.0.0/dist/signature_pad.umd.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/notyf@3/notyf.min.js"></script>
-    
+
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const tooltip = document.getElementById("tooltip");
+            let tooltipTimeout;
+
+            document.querySelectorAll("[data-tip]").forEach(field => {
+                field.addEventListener("mouseenter", (e) => {
+                    const message = e.target.getAttribute("data-tip");
+                    if (!message) return;
+
+                    tooltip.textContent = message;
+                    const rect = e.target.getBoundingClientRect();
+
+                    tooltip.style.left = rect.left + window.scrollX + "px";
+                    tooltip.style.top = rect.top + window.scrollY - 35 + "px";
+                    tooltip.style.display = "block";
+
+                    clearTimeout(tooltipTimeout);
+                    tooltipTimeout = setTimeout(() => {
+                        tooltip.style.display = "none";
+                    }, 2000); // 2 segundos
+                });
+
+                field.addEventListener("mouseleave", () => {
+                    clearTimeout(tooltipTimeout);
+                    tooltip.style.display = "none";
+                });
+            });
+        });
+
+
+    </script>
+
+    <div id="tooltip"
+        style="position: absolute; display: none; background: #222; color: #fff; padding: 6px 10px; border-radius: 5px; font-size: 13px; z-index: 999;">
+    </div>
+
 </body>
 
 </html>
-
-
-

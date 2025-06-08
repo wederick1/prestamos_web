@@ -20,7 +20,7 @@
 
         <div class="seccion-info">
             <p>
-                DEBO (DEBEMOS) Y PAGARÉ (PAGAREMOS) AL SEÑOR ELVIN DELGADO FERNÁNDEZ, portador del RNC xxx-xxxxxxx-x,
+                DEBO (DEBEMOS) Y PAGARÉ (PAGAREMOS) A INVERSIONES Y PRESTAMOS DELGADO FERNANDEZ SRL, portador del RNC 1-32-57320-1,
                 o a su orden la cantidad de 
                 RD$ <span id="monto" class="dato">0.00</span> 
                 (Pesos Dominicanos).
@@ -36,24 +36,54 @@
 
         <div class="condiciones">
             <p>
-                Me comprometo a pagar en la fecha indicada. Por incumplimiento, quedan afectados todos mis bienes, con renuncia del fuero domicilio y cualquier ley que pueda favorecerme.
-                Este pagaré está afectado por una mora del 5% mensual sobre la cuota vencida. 
-                Si el préstamo presenta 45 días de retraso, la garantía quedará adjudicada al acreedor.
-                En caso de incumplimiento, la deuda pasará al codeudor solidario.
-                Todos los gastos legales serán cubiertos por el deudor o codeudor solidario.
-                Visitas de cobro generan un costo de RD$300.
-                La mora inicia 2 días después del vencimiento en préstamos de una sola cuota.
-                El acreedor puede ejecutar el cobro sin intervención judicial (art. 1134 del Código Civil).
-                En caso de fallecimiento del deudor, la deuda será asumida por los herederos o codeudor.
-                El acreedor podrá reportar a burós de crédito.
-                Si hay 30 días de atraso, se publicará la cédula en redes sociales.
+                 <span class="dato">Penalidades por Mora:</span>
+
+                Se aplicará una mora del 5% mensual sobre el monto de la cuota vencida, calculada a partir del tercer día posterior al vencimiento en préstamos de única cuota.
+                
+                Tras 30 días de atraso, autorizo expresamente a <span class="dato">INVERSIONES Y PRÉSTAMOS DELGADO</span>  a:
+                
+                Reportar mi situación crediticia a buros de crédito y entidades afines.
+                
+                Hacer de dominio público mis datos personales y de la deuda, incluyendo su publicación en redes sociales <span class="dato">(WhatsApp, Instagram, Facebook)</span>  y otros medios, conforme a la ley.
+                
+                Adjudicación de Garantía y Responsabilidad Solidaria:
+                
+                Si el incumplimiento supera 45 días, la garantía asociada al préstamo quedará adjudicada al acreedor de forma irrevocable.
+                
+                La deuda será transferida automáticamente al codeudor solidario, quien asumirá la obligación en su totalidad, incluyendo gastos legales y adicionales.
+                
+                Gastos y Costos Adicionales:
+                
+                Todo gasto legal (honorarios de abogados, notificaciones, procesos judiciales) será cubierto por el deudor o codeudor.
+                
+                Las visitas de cobranza generarán un costo fijo de RD$300 por cada gestión realizada.
+                
+                Renuncia a Beneficios Legales y Jurisdicción:
+                
+                Renuncio expresamente al fuero de mi domicilio, así como a cualquier ley o beneficio legal que pudiera favorecerme en un proceso judicial.
+                
+                El acreedor podrá ejecutar el cobro sin intervención judicial, conforme al Artículo 1134 del Código Civil.
+                
+                Obligación de Herederos:
+                
+                En caso de fallecimiento del deudor, la deuda será asumida de manera solidaria por los herederos o, en su defecto, por el codeudor registrado.
+                
+                Cumplimiento y Aceptación:
+                
+                Declaro bajo juramento que todos mis bienes presentes y futuros quedan afectados como garantía para el cumplimiento de esta obligación.
+                
+                Este documento tiene carácter vinculante y se rige bajo las leyes vigentes de la República Dominicana.
             </p>
         </div>
 
         <h3>Por lo no previsto, las partes se remiten al derecho común.</h3>
 
         <div class="seccion-escritura">
-            <p>Espacio reservado para: "BUENO, VÁLIDO, LEÍDO Y APROBADO POR LA SUMA" en letras y números.</p>
+            <p>Espacio reservado para:  <span class="dato">"BUENO, VÁLIDO, LEÍDO Y APROBADO POR LA SUMA DE:" </span>  
+                <span>
+                    <input type="text" id="escritura" class="dato" placeholder="Escritura">
+                </span>
+            </p>
             <p>
                 Yo, 
                 <span id="nombre-cliente" class="dato">Nombre del Cliente</span>, 
@@ -65,21 +95,10 @@
         </div>
 
         <div class="seccion-datos">
-            <p>Condiciones de pago: 
-                <select id="condiciones-pago" class="dato">
-                    <option value="semanal">Semanal</option>
-                    <option value="quincenal">Quincenal</option>
-                    <option value="mensual" selected>Mensual</option>
-                </select>
+            <p>Condiciones de pago: <span id="frecuencia" class="dato"></span>
+
             </p>
-            <p>Garantía del préstamo: 
-                <select id="garantia" class="dato">
-                    <option value="ninguna" selected>Ninguna</option>
-                    <option value="hipotecaria">Garantía hipotecaria</option>
-                    <option value="personal">Garantía personal</option>
-                    <option value="ingresos-futuros">Ingresos futuros</option>
-                    <option value="prendaria">Garantía prendaria</option>
-                </select>
+            <p>Garantía del préstamo:  <span id="garantia" name="garantia"  class="dato"></span>
             </p>
             <p>Monto total: RD$ <span id="monto-total" class="dato">0.00</span></p>
         </div>
@@ -115,12 +134,12 @@
                 <p>Firma del Deudor</p>
             </div>
             <div class="firma-box">
-                <div class="firma-linea"><span class="firma-input">Elvis Delgado</span> </div>
+                <div class="firma-linea"><span class="firma-input"></span> </div>
                 <p>Firma del Fiador</p>
             </div>
             <div class="firma-box">
-                <div class="firma-linea"><span class="firma-input">administracion</span></div>
-                <p>Encargado de Oficina</p>
+                <div class="firma-linea"><span class="firma-input"></span></div>
+                <p>Encargado de Codeudor</p>
             </div>
         </div>
         
@@ -128,6 +147,9 @@
         <div class="boton-firmar">
             <button id="abrir-modal" class="sign-btn btn">Firmar</button>
         </div>
+
+
+  
 
         <div class="contacto">
             <p>Tel: 809-370-9837 | Email: prestamosdelgado@gmail.com | Dirección: Estamos frente a óptica Jarabacoa segundo nivel plaza peralta.</p>

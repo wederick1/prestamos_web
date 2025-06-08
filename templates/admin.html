@@ -25,10 +25,12 @@
         <div class="user-menu">
             <div class="user-icon">U</div>
             <div class="user-dropdown">
+                {% if session.get('role') == 'admin' %}
                 <a href="#profile">Usuario</a>
                 <a href="#settings">Ajustes</a>
+                {% endif %}
                 <hr>
-                <a href="#logout">Cerrar sesión</a>
+                <a href="{{ url_for('login.logout') }}">Cerrar sesión</a>
             </div>
         </div>
     </header>
@@ -42,7 +44,10 @@
         <a href="{{ url_for('admin.admin') }}">Inicio</a>
         <a href="{{ url_for('solicitudes.solicitudes') }}">Solicitudes</a>
         <a href="{{ url_for('clientes.clientes') }}">Contratos</a>
-        <a href="">Configuracion</a>
+        {% if session.get('role') == 'admin' %}
+        <a href="{{ url_for('usuarios.usuarios') }}">Usuario</a>
+        <a href="{{ url_for('configuracion.configuracion') }}">Configuracion</a>
+        {% endif %}
         <a href="{{ url_for('versiones.versiones') }}">Versiones</a>
     </div>
     {% endblock %}

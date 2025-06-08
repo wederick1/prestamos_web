@@ -84,11 +84,11 @@ def aprobar_solicitud(id):
         if not solicitud:
             return jsonify({'success': False, 'message': 'Solicitud no encontrada'})
 
-        # Validar que se obtuvieron 44 columnas
-        if len(solicitud) != 44:
+        # Validar que se obtuvieron 45 columnas
+        if len(solicitud) != 45:
             return jsonify({
                 'success': False,
-                'error': f"Error: Se esperaban 44 columnas, se obtuvieron {len(solicitud)}"
+                'error': f"Error: Se esperaban 45 columnas, se obtuvieron {len(solicitud)}"
             }), 500
 
         # Eliminar el 'id' de la solicitud para tener solo 42 datos
@@ -100,7 +100,7 @@ def aprobar_solicitud(id):
             'activo'  # estado (columna 45)
         )
 
-        print(len(valores))  # Debugging: Verifica la longitud de los valores para asegurarte de que sea 45
+        print(datos)  # Debugging: Verifica la longitud de los valores para asegurarte de que sea 45
 
         # Insertar en clientes (45 columnas explícitas)
         cursor.execute('''
@@ -110,7 +110,7 @@ def aprobar_solicitud(id):
                 correo, ocupacion, cedula, tiempo_empresa, otros_ingresos, estado_civil,
                 celular_conyuge, trabajo_conyuge, dependientes, direccion_solicitante,
                 lugar_vivienda, ubicacion_trabajo, telefono_trabajo, pago_renta,
-                gastos_mensuales, horario_trabajo, ingresos_mensuales, total_ingresos,
+                gastos_mensuales, horario_trabajo, ingresos_mensuales, garantia, total_ingresos,
                 conyuge, direccion_trabajo_conyuge, telefono_trabajo_conyuge,
                 monto_solicitado, ref_personal1_nombre, ref_personal2_nombre,
                 ref_personal1_telefono, ref_personal2_telefono, ref_familiar1_nombre,
@@ -122,7 +122,7 @@ def aprobar_solicitud(id):
                 %s, %s, %s, %s, %s, %s, %s, %s, %s, %s,
                 %s, %s, %s, %s, %s, %s, %s, %s, %s, %s,
                 %s, %s, %s, %s, %s, %s, %s, %s, %s, %s,
-                %s, %s, %s, %s, %s
+                %s, %s, %s, %s, %s, %s
             )
         ''', valores)
 

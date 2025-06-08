@@ -104,3 +104,147 @@
     font-size: 24px;
     margin-bottom: 20px;
 }
+
+.editar-btn {
+    background-color: #2e9acc; /* Verde mar */
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background-color 0.3s ease;
+}
+
+.editar-btn:hover {
+    background-color: #2793ae; /* Verde mar oscuro al pasar el mouse */
+}
+
+/* Backdrop: efecto fade-in/out */
+.modal-backdrop {
+    position: fixed;
+    inset: 0; 
+    background: rgba(0,0,0,0.4);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    transition: opacity 0.3s ease;
+  }
+  .modal-backdrop.show {
+    display: flex;
+    opacity: 1;
+  }
+  
+  /* Contenedor del modal */
+  .modal-content {
+    background: #fff;
+    width: 360px;
+    max-width: 90%;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 8px 16px rgba(0,0,0,0.12);
+    transform: translateY(-20px);
+    transition: transform 0.3s ease;
+  }
+  .modal-backdrop.show .modal-content {
+    transform: translateY(0);
+  }
+  
+  /* Header: barra plana con color de acento */
+  .modal-header {
+    background: #2e9acc; /* color principal */
+    padding: 1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .modal-header h3 {
+    margin: 0;
+    font-size: 1.1rem;
+    color: #fff;
+    font-weight: 500;
+  }
+  .close-modal {
+    background: none;
+    border: none;
+    font-size: 1.2rem;
+    color: #fff;
+    cursor: pointer;
+    transition: transform 0.2s;
+  }
+  .close-modal:hover {
+    transform: scale(1.2);
+  }
+  
+  /* Cuerpo: padding generoso y campos estilo plano */
+  .modal-body {
+    padding: 1rem;
+  }
+  .form-group {
+    margin-bottom: 1.2rem;
+  }
+  .form-group label {
+    display: block;
+    margin-bottom: 0.3rem;
+    font-size: 0.9rem;
+    color: #333;
+  }
+  .form-group input,
+  .form-group select {
+    width: 100%;
+    border: none;
+    border-bottom: 2px solid #ddd;
+    padding: 0.5rem 0;
+    font-size: 0.95rem;
+    transition: border-color 0.2s;
+    background: transparent;
+  }
+  .form-group input:focus,
+  .form-group select:focus {
+    outline: none;
+    border-bottom-color: #2e9acc;
+  }
+  
+  /* Footer: botones flat y animaciones suaves */
+  .modal-footer {
+    padding: 0.75rem 1rem;
+    background: #f7f9fa;
+    display: flex;
+    justify-content: flex-end;
+    gap: 0.5rem;
+  }
+  .modal-footer .btn {
+    padding: 0.6rem 1.2rem;
+    border: none;
+    border-radius: 4px;
+    font-size: 0.95rem;
+    cursor: pointer;
+    transition: background 0.2s, transform 0.1s;
+  }
+  .btn-primary {
+    background: #2e9acc;
+    color: #fff;
+  }
+  .btn-primary:hover {
+    background: #277a94;
+    transform: translateY(-1px);
+  }
+  .btn-secondary {
+    background: #ccc;
+    color: #333;
+  }
+  .btn-secondary:hover {
+    background: #b3b3b3;
+    transform: translateY(-1px);
+  }
+  
+  .notyf__toast {
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+  }
+  
+  .notyf__message {
+    font-size: 14px;
+    padding: 8px 12px;
+  }

@@ -2,6 +2,7 @@ from flask import Blueprint, render_template, request, jsonify, redirect, url_fo
 import base64
 import os
 from conexion import conectar  # Asegúrate de tener configurada la conexión a la base de datos
+from utils import login_required  # Asegúrate de tener el decorador para verificar sesión
 
 bp = Blueprint('contrato', __name__)
 
@@ -16,13 +17,13 @@ def firmar():
         data = request.get_json()
         firma = data.get('firma')
         estado = data.get('estado')
-        metodo_pago = data.get('medio_entrega')
-        garantia = data.get('garantia')  # Capturar el valor de la garantía
+        metodo_pago = data.get('medio_entrega') # Capturar el valor de la garantía
+        print(metodo_pago)
         cliente_id = data.get('cliente_id')
 
         
         # Validar que los datos requeridos estén presentes
-        if not all([firma, estado, metodo_pago, garantia, cliente_id]):
+        if not all([firma, estado, metodo_pago, cliente_id]):
             return jsonify({'success': False, 'error': 'Todos los campos son requeridos'})
 
         # Convertir cliente_id a entero
@@ -38,9 +39,9 @@ def firmar():
         # Actualizar los valores en la tabla clientes
         cursor.execute('''
             UPDATE clientes
-            SET estado = %s, metodo_pago = %s, garantia = %s, firma_contrato = %s
+            SET estado = %s, metodo_pago = %s, firma_contrato = %s
             WHERE id = %s
-        ''', (estado, metodo_pago, garantia, firma, cliente_id))
+        ''', (estado, metodo_pago, firma, cliente_id))
 
         # Confirmar los cambios y cerrar la conexión
         conn.commit()

@@ -1,30 +1,44 @@
 document.addEventListener('DOMContentLoaded', function () {
+    // Obtener ID de cliente de la URL
     const params = new URLSearchParams(window.location.search);
     const clientId = params.get('id');
 
-    if (clientId) {
-        fetch(`/api/clientes/${clientId}`)
-            .then(response => response.json())
-            .then(cliente => {
-                if (cliente.error) {
-                    alert(cliente.error);
-                } else {
-                    document.getElementById('nombre-cliente').textContent = cliente.nombre || 'No proporcionado';
-                    document.getElementById('cedula-cliente').textContent = cliente.cedula || 'No proporcionado';
-                    document.getElementById('monto').textContent = formatCurrency(cliente.monto_solicitado || 0);
-                    document.getElementById('monto-letras').textContent = `RD$ ${formatCurrency(cliente.monto_solicitado || 0)}`;
-                    document.getElementById('monto-total').textContent = formatCurrency(cliente.monto_total || cliente.monto_solicitado || 0);
-                    document.getElementById('fecha-solicitud').textContent = `Fecha: ${formatDate(cliente.fecha_solicitud || new Date())}`;
-                }
-            })
-            .catch(error => {
-                console.error('Error al cargar los datos del cliente:', error);
-                alert('Error al cargar los datos del cliente');
-            });
-    } else {
+    if (!clientId) {
         alert('No se proporcionó un ID de cliente.');
+        return;
     }
 
+    // Cargar datos del cliente
+    fetch(`/api/clientes/${clientId}`)
+        .then(response => {
+            if (!response.ok) throw new Error(`HTTP ${response.status}`);
+            return response.json();
+        })
+        .then(cliente => {
+            if (cliente.error) {
+                alert(cliente.error);
+                return;
+            }
+            document.getElementById('nombre-cliente').textContent = cliente.nombre || 'No proporcionado';
+            document.getElementById('cedula-cliente').textContent = cliente.cedula || 'No proporcionado';
+            document.getElementById('monto').textContent = formatCurrency(cliente.monto_solicitado);
+            document.getElementById('monto-letras').textContent = `RD$ ${formatCurrency(cliente.monto_solicitado)}`;
+            document.getElementById('monto-total').textContent = formatCurrency(cliente.monto_total || cliente.monto_solicitado);
+            document.getElementById('fecha-solicitud').textContent = `Fecha: ${formatDate(cliente.fecha_solicitud)}`;
+            const garantiaEl = document.getElementById('garantia');
+            if (['INPUT','SELECT','TEXTAREA'].includes(garantiaEl.tagName)) {
+                garantiaEl.value = cliente.garantia || '';
+            } else {
+                garantiaEl.textContent = cliente.garantia || 'No proporcionado';
+            }
+            document.getElementById('frecuencia').textContent = cliente.frecuencia || 'No proporcionado';
+        })
+        .catch(error => {
+            console.error('Error al cargar los datos del cliente:', error);
+            alert('Error al cargar los datos del cliente');
+        });
+
+    // Variables del modal y canvas
     const modal = document.getElementById('modal-firma');
     const abrirModal = document.getElementById('abrir-modal');
     const borrarFirma = document.getElementById('borrar-firma');
@@ -32,9 +46,8 @@ document.addEventListener('DOMContentLoaded', function () {
     const signaturePadCanvas = document.getElementById('signature-pad');
     const ctx = signaturePadCanvas.getContext('2d');
     let isDrawing = false;
-    const closeModal = document.querySelector('.close-btn');
 
-    // Redimensionar y escalar canvas correctamente
+    // Redimensionar y escalar canvas
     function resizeCanvas() {
         const ratio = Math.max(window.devicePixelRatio || 1, 1);
         const rect = signaturePadCanvas.getBoundingClientRect();
@@ -42,8 +55,10 @@ document.addEventListener('DOMContentLoaded', function () {
         signaturePadCanvas.height = rect.height * ratio;
         signaturePadCanvas.style.width = rect.width + 'px';
         signaturePadCanvas.style.height = rect.height + 'px';
-        ctx.setTransform(1, 0, 0, 1, 0, 0); // reset
+        ctx.setTransform(1, 0, 0, 1, 0, 0);
         ctx.scale(ratio, ratio);
+        ctx.lineCap = 'round';
+        ctx.lineWidth = 2;
     }
 
     function getPosition(e) {
@@ -51,11 +66,7 @@ document.addEventListener('DOMContentLoaded', function () {
         const isTouch = e.touches && e.touches.length > 0;
         const clientX = isTouch ? e.touches[0].clientX : e.clientX;
         const clientY = isTouch ? e.touches[0].clientY : e.clientY;
-
-        return {
-            x: clientX - rect.left,
-            y: clientY - rect.top
-        };
+        return { x: clientX - rect.left, y: clientY - rect.top };
     }
 
     function startDrawing(e) {
@@ -79,57 +90,57 @@ document.addEventListener('DOMContentLoaded', function () {
         ctx.closePath();
     }
 
+    // Inicializar canvas y eventos
     resizeCanvas();
     window.addEventListener('resize', resizeCanvas);
-
-    // Eventos para mouse
     signaturePadCanvas.addEventListener('mousedown', startDrawing);
     signaturePadCanvas.addEventListener('mousemove', draw);
     signaturePadCanvas.addEventListener('mouseup', stopDrawing);
     signaturePadCanvas.addEventListener('mouseout', stopDrawing);
-
-    // Eventos para touch
     signaturePadCanvas.addEventListener('touchstart', startDrawing, { passive: false });
     signaturePadCanvas.addEventListener('touchmove', draw, { passive: false });
     signaturePadCanvas.addEventListener('touchend', stopDrawing);
     signaturePadCanvas.addEventListener('touchcancel', stopDrawing);
 
-    // Abrir modal
+    // Abrir y cerrar modal
     abrirModal.addEventListener('click', () => {
         modal.style.display = 'block';
-        resizeCanvas(); // asegurar que se escale al mostrarse
+        resizeCanvas();
     });
-
-    // Cerrar modal
-    closeModal.addEventListener('click', () => modal.style.display = 'none');
-    window.addEventListener('click', e => {
-        if (e.target === modal) modal.style.display = 'none';
-    });
+    modal.querySelector('.close-btn').addEventListener('click', () => modal.style.display = 'none');
+    window.addEventListener('click', e => { if (e.target === modal) modal.style.display = 'none'; });
 
     // Borrar firma
     borrarFirma.addEventListener('click', () => ctx.clearRect(0, 0, signaturePadCanvas.width, signaturePadCanvas.height));
 
-    // Finalizar firma
+    // Finalizar firma y enviar al backend
     finalizarFirma.addEventListener('click', function () {
         const firmaData = signaturePadCanvas.toDataURL('image/png');
-        const medioEntrega = document.querySelector('input[name="grupo-checkbox"]:checked')?.id || 'No especificado';
-        const garantia = document.getElementById('garantia').value;
+        // Obtener valores de todos los checkboxes seleccionados
+        const medioEntrega = Array.from(
+            document.querySelectorAll('input[name="grupo-checkbox"]:checked')
+        ).map(cb => cb.value);
+        const garantiaEl = document.getElementById('garantia');
+        const garantia = garantiaEl.value || garantiaEl.textContent;
 
-        if (!firmaData || !medioEntrega || !garantia || !clientId) {
+        if (!firmaData || medioEntrega.length === 0 || !garantia) {
             alert('Por favor, completa todos los campos antes de continuar.');
             return;
         }
 
+        // Construir payload
+        const payload = {
+            cliente_id: clientId,
+            firma: firmaData,
+            medio_entrega: medioEntrega,
+            garantia: garantia,
+            estado: 'aprobado',
+        };
+
         fetch('/api/firmar', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({
-                cliente_id: clientId,
-                firma: firmaData,
-                medio_entrega: medioEntrega,
-                garantia: garantia,
-                estado: 'aprobado',
-            }),
+            body: JSON.stringify(payload),
         })
             .then(response => {
                 if (response.redirected) {
@@ -139,14 +150,25 @@ document.addEventListener('DOMContentLoaded', function () {
                 }
             })
             .then(data => {
-                if (data && !data.success) {
-                    alert(data.error || 'Error al guardar la firma');
+                if (data && data.error) {
+                    alert(data.error);
                 }
             })
             .catch(error => {
                 console.error('Error al enviar los datos:', error);
                 alert('Error al enviar los datos');
             });
+    });
+
+    // Checkbox único
+    document.querySelectorAll('input[name="grupo-checkbox"]').forEach(checkbox => {
+        checkbox.addEventListener('change', function () {
+            if (this.checked) {
+                document.querySelectorAll('input[name="grupo-checkbox"]').forEach(other => {
+                    if (other !== this) other.checked = false;
+                });
+            }
+        });
     });
 });
 
@@ -166,14 +188,3 @@ function formatDate(date) {
         year: 'numeric'
     });
 }
-
-// Checkbox único
-document.querySelectorAll('input[name="grupo-checkbox"]').forEach(checkbox => {
-    checkbox.addEventListener('change', function () {
-        if (this.checked) {
-            document.querySelectorAll('input[name="grupo-checkbox"]').forEach(other => {
-                if (other !== this) other.checked = false;
-            });
-        }
-    });
-});

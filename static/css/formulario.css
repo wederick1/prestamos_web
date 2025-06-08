@@ -1,4 +1,14 @@
 @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400..700&display=swap');
+
+:root {
+    --primary-color: #2D3B4E;
+    --secondary-color: #119D85;
+    --background-light: #F9FAFB;
+    --border-color: #E5E7EB;
+    --transition: all 0.2s ease;
+  }
+
+
 body {
     font-family: Arial, sans-serif;
     margin: 0;
@@ -618,3 +628,242 @@ form {
     font-size: 14px;
     padding: 8px 12px;
   }
+
+  .tooltip {
+    position: relative;
+    display: inline-block;
+  }
+  
+  .tooltip .tooltiptext {
+    visibility: hidden;
+    width: 220px;
+    background-color: #2b2b2b;
+    color: #fff;
+    text-align: left;
+    border-radius: 5px;
+    padding: 6px;
+    position: absolute;
+    z-index: 1;
+    bottom: 125%; /* arriba del campo */
+    left: 0;
+    opacity: 0;
+    transition: opacity 0.3s;
+    font-size: 0.85em;
+  }
+  
+  .tooltip:hover .tooltiptext {
+    visibility: visible;
+    opacity: 1;
+  }
+
+
+/* CSS */
+/* CSS */
+.modal-backdrop {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.5);
+    z-index: 1000;
+  }
+  
+  .modal-content {
+    background-color: #fff;
+    margin: 5% auto;
+    padding: 20px;
+    width: 80%;
+    max-width: 600px;
+    border-radius: 8px;
+  }
+  
+  .modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #ddd;
+    padding-bottom: 10px;
+  }
+
+  .modal-footer {
+    display: flex;
+    gap: 12px;
+    justify-content: flex-end;
+    padding-top: 20px;
+    margin-top: 20px;
+    border-top: 1px solid #eee;
+  }
+  
+  .modal-footer button {
+    padding: 12px 24px;
+    border-radius: 6px;
+    font-weight: 500;
+    transition: all 0.2s ease;
+    cursor: pointer;
+    font-size: 14px;
+  }
+  
+  /* Botón principal (Enviar) */
+  .modal-footer button:first-child {
+    background-color: #2196F3;
+    color: white;
+    border: none;
+  }
+  
+  .modal-footer button:first-child:hover {
+    background-color: #1976D2;
+    transform: translateY(-1px);
+  }
+  
+  /* Botón secundario (Cancelar) */
+  .modal-footer button:last-child {
+    background-color: transparent;
+    color: #666;
+    border: 1px solid #ddd;
+  }
+  
+  .modal-footer button:last-child:hover {
+    background-color: #f8f8f8;
+    color: #333;
+    border-color: #ccc;
+  }
+  
+  /* Efectos activos */
+  .modal-footer button:active {
+    transform: translateY(1px);
+  }
+  
+/* CSS Modificado */
+.upload-section {
+    display: flex;
+    gap: 10px;
+    margin: 20px 0;
+    justify-content: space-between;
+  }
+  
+/* CSS Actualizado */
+.upload-area {
+    width: 48%;
+    aspect-ratio: 1.6;
+    border: 2px solid #e0e0e0;
+    border-radius: 8px;
+    background: #f5f5f5;
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+    transition: all 0.3s;
+  }
+  
+  .plus-icon {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 40px;
+    height: 40px;
+    opacity: 0.3;
+  }
+  
+  .plus-icon::before,
+  .plus-icon::after {
+    content: '';
+    position: absolute;
+    background: #555;
+  }
+  
+  .plus-icon::before {
+    width: 100%;
+    height: 2px;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+  
+  .plus-icon::after {
+    height: 100%;
+    width: 2px;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+  
+  .thumbnail {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: none;
+    position: relative;
+    z-index: 1;
+  }
+  
+  /* Ocultar el + cuando hay imagen */
+  .upload-area:has(.thumbnail[src^="data:"]) .plus-icon {
+    display: none;
+  }
+  
+  .upload-area:hover {
+    border-color: #2196F3;
+    background: #fff;
+  }
+  
+  .upload-area:hover .plus-icon {
+    opacity: 0.6;
+  }
+  
+  .upload-area:hover .plus-icon::before,
+  .upload-area:hover .plus-icon::after {
+    background: #2196F3;
+  }
+
+  .seccion-info {
+    background: var(--background-light);
+    border-radius: 6px;
+    padding: 1rem;
+    margin: 1rem 0;
+  }
+
+  .status-indicator {
+    font-size: 0.9em;
+    margin-left: 5px;
+    transition: all 0.3s ease;
+}
+
+/* Checkboxes */
+.checkbox-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    margin: 1rem 0;
+  }
+  
+  .checkbox-option {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+  
+  input[type="checkbox"] {
+    width: 20px;
+    height: 20px;
+    border: 2px solid var(--border-color);
+    border-radius: 4px;
+    appearance: none;
+    flex-shrink: 0;
+  }
+  
+  input[type="checkbox"]:checked {
+    background: var(--secondary-color);
+    border-color: var(--secondary-color);
+    position: relative;
+  }
+  
+  input[type="checkbox"]:checked::after {
+    content: "✓";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white;
+    font-weight: bold;
+  }
+

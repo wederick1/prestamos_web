@@ -18,18 +18,37 @@ def formulario():
 
             datos = request.get_json()
 
+
             # Validar campos requeridos
             campos_requeridos = ['nombre_solicitante', 'telefono_solicitante', 'correo', 'monto_solicitado', 'firmaDigital']
             for campo in campos_requeridos:
                 if campo not in datos or not str(datos[campo]).strip():
                     return jsonify({'success': False, 'error': f'El campo {campo} es obligatorio'}), 400
+            
+            # Validar y convertir la fecha
+            if 'fecha_solicitud' not in datos or not datos['fecha_solicitud'].strip():
+                return jsonify({'success': False, 'error': 'El campo fecha_solicitud es obligatorio'}), 400
+
+            try:
+                fecha_solicitud = datetime.strptime(datos['fecha_solicitud'], "%d/%m/%Y").strftime("%Y-%m-%d")
+            except ValueError:
+                return jsonify({'success': False, 'error': 'El formato de la fecha es inválido. Debe ser DD/MM/YYYY'}), 400
 
             # Decodificar la firma digital en Base64
             firma_base64 = datos['firmaDigital']
+            frente_b64 = datos.get('frenteBase64')
+            reverso_b64 = datos.get('reversoBase64')
+
+            if not frente_b64 or not reverso_b64:
+                return jsonify({'success': False, 'error': 'Las imágenes del frente o reverso están vacías o no fueron enviadas'}), 400
+
+
             if not firma_base64.startswith('data:image/png;base64,'):
                 return jsonify({'success': False, 'error': 'Formato de firma inválido'}), 400
 
             # Eliminar el prefijo "data:image/png;base64," de la cadena Base64
+            frente_data = frente_b64.split(',')[1]
+            reverso_data = reverso_b64.split(',')[1]
             firma_base64 = firma_base64.split(',')[1]
 
             # Generar la URL completa del logo
@@ -304,6 +323,10 @@ def formulario():
                                 <span>{{ datos['dependientes'] }}</span>
                             </div> 
                             <div class="campo">
+                                <label>Garantia:</label>
+                                <span>{{ datos['garantia'] }}</span>
+                            </div> 
+                            <div class="campo">
                                 <label>Monto Solicitado (RD$):</label>
                                 <span>{{ datos['monto_solicitado'] }}</span>
                             </div>
@@ -418,8 +441,8 @@ def formulario():
             # Enviar correo usando Flask-Mail
             msg = Message(
                 'Solicitud de Préstamo - Delgado',
-                sender='wederick02@gmail.com',
-                recipients=['wederick02@gmail.com']
+                sender='prestamosdelgadof@gmail.com',
+                recipients=['prestamosdelgadof@gmail.com']
             )
             msg.body = f"""
             Estimado administrador,
@@ -434,6 +457,9 @@ def formulario():
             """
             # Adjuntar el PDF generado
             msg.attach('solicitud_prestamo.pdf', 'application/pdf', pdf)
+            msg.attach('frente.jpg', 'image/jpeg', base64.b64decode(frente_data))
+            msg.attach('reverso.jpg', 'image/jpeg', base64.b64decode(reverso_data))
+
 
             # Enviar el correo
             mail.send(msg)
@@ -474,6 +500,7 @@ def formulario():
                             conyuge,
                             direccion_trabajo_conyuge,
                             telefono_trabajo_conyuge,
+                            garantia,
                             monto_solicitado,
                             ref_personal1_nombre,
                             ref_personal2_nombre,
@@ -494,7 +521,7 @@ def formulario():
                             %s, %s, %s, %s, %s, %s, %s, %s, %s, %s,
                             %s, %s, %s, %s, %s, %s, %s, %s, %s, %s,
                             %s, %s, %s, %s, %s, %s, %s, %s, %s, %s,
-                            %s, %s, %s
+                            %s, %s, %s, %s
                         )
                     """, (
                         # Lista de valores corregida (42 elementos, 1 por columna)
@@ -526,6 +553,7 @@ def formulario():
                         datos.get('conyuge'),
                         datos.get('direccion_trabajo_conyuge'),
                         datos.get('telefono_trabajo_conyuge'),
+                        datos.get('garantia'),
                         float(datos.get('monto_solicitado') or 0),
                         datos.get('nombre_referencia_personal_1'),
                         datos.get('nombre_referencia_personal_2'),

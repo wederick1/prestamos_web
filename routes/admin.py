@@ -2,10 +2,12 @@ from flask import Blueprint, render_template
 from .solicitudes import obtener_solicitudes
 from .clientes import contar_clientes
 from conexion import conectar
+from utils import login_required
 
 bp = Blueprint('admin', __name__)
 
 @bp.route('/admin')
+@login_required
 def admin():
     solicitudes = obtener_solicitudes()
     clientes = contar_clientes()

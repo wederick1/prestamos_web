@@ -5,6 +5,7 @@
 {% block styles %}
 <link rel="stylesheet" href="/static/css/clientes.css">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/notyf@3/notyf.min.css">
 {% endblock %}
 
 {% block content %}
@@ -39,6 +40,58 @@
                 </div>
             </div>
         </div>
+
+        <!-- Modal Editar Cliente -->
+        <div id="editarModal" class="modal-backdrop" style="display:none;">
+            <div class="modal-content">
+            <div class="modal-header">
+                <h3>Editar Cliente</h3>
+                <button type="button" class="close-modal" id="cerrarEditarModal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form id="editarForm">
+                <input type="hidden" id="editarClienteId" name="id">
+        
+                <div class="form-group">
+                    <label for="editarMonto">Monto Solicitado</label>
+                    <input type="text" id="editarMonto" name="monto_solicitado" class="form-control" required>
+                  </div>
+                  
+        
+                <div class="form-group">
+                    <label for="editarFrecuencia">Frecuencia de Pago</label>
+                    <select id="editarFrecuencia" name="frecuencia" class="form-control" required>
+                    <option value="">-- Selecciona --</option>
+                    <option value="Semanal">Semanal</option>
+                    <option value="Quincenal">Quincenal</option>
+                    <option value="Mensual">Mensual</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="apodo">Apodo</label>
+                    <input type="text" id="apodo" name="apodo" class="form-control" required>
+                  </div>
+
+                <div class="form-group">
+                    <label for="garantia">Garantia</label>
+                    <select id="garantia" name="garantia" class="form-control" required>
+                    <option value="">-- Selecciona --</option>
+                    <option value="Hipotecaria">Garantía hipotecaria</option>
+                    <option value="Personal">Garantía personal</option>
+                    <option value="Prendaria">Garantía prendaria</option>
+                    </select>
+                </div>
+
+        
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-primary">Guardar</button>
+                    <button type="button" class="btn btn-secondary" id="cancelarEditar">Cancelar</button>
+                </div>
+                </form>
+            </div>
+            </div>
+        </div>
     </div>
 </main>
 {% endblock %}
@@ -46,6 +99,7 @@
 {% block scripts %}
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script src="/static/js/clientes.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/notyf@3/notyf.min.js"></script>
 {% endblock %}
 
 
