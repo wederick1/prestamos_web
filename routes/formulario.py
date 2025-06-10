@@ -441,8 +441,8 @@ def formulario():
             # Enviar correo usando Flask-Mail
             msg = Message(
                 'Solicitud de Préstamo - Delgado',
-                sender='prestamosdelgadof@gmail.com',
-                recipients=['prestamosdelgadof@gmail.com']
+                sender='wederick02@gmail.com',
+                recipients=['wederick02@gmail.com']
             )
             msg.body = f"""
             Estimado administrador,

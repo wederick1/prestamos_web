@@ -56,6 +56,7 @@ document.addEventListener('DOMContentLoaded', () => {
               <button class="info-btn view-client-btn" data-id="${cliente.id}">Info</button>
               <button class="contrato-btn" data-id="${cliente.id}">Contrato</button>
               <button class="editar-btn" data-id="${cliente.id}">Editar</button>
+              <button class="btn-compartir" data-id="${cliente.id}">Compartir Link</button>
             </td>
           `;
           tbody.appendChild(row);
@@ -107,6 +108,30 @@ document.addEventListener('DOMContentLoaded', () => {
           formatInitialMonto(); // aplicar formato de moneda
           selectFreq.value = c.frecuencia || '';
           editarModal.style.display = 'flex';
+        });
+      });
+
+            // Compartir Link
+      document.querySelectorAll('.btn-compartir').forEach(btn => {
+        btn.addEventListener('click', async () => {
+          const id = btn.dataset.id;
+
+          try {
+            const resp = await fetch(`/api/clientes/${id}`);
+            if (!resp.ok) return alert('Error al cargar datos');
+            const c = await resp.json();
+
+            const link = `${window.location.origin}/contrato?id=${id}`;
+
+            await navigator.clipboard.writeText(link);
+
+            const notyf = new Notyf({ duration: 3000, position: { x: 'right', y: 'top' } });
+            notyf.success(`Link copiado al portapapeles: ${link}`);
+
+          } catch (err) {
+            const notyf = new Notyf({ duration: 3000, position: { x: 'right', y: 'top' } });
+            notyf.error('Error al compartir el link');
+          }
         });
       });
     }
@@ -164,3 +189,5 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
   
+
+

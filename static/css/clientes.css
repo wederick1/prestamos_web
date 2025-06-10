@@ -248,3 +248,51 @@
     font-size: 14px;
     padding: 8px 12px;
   }
+
+.btn-agregar {
+    position: absolute;
+    top: 120px;
+    right: 20px;
+    background-color: #007bff;
+    color: #fff;
+    font-size: 16px;
+    font-weight: bold;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s, transform 0.2s;
+}
+
+.btn-agregar:hover {
+    background-color: #0056b3;
+    transform: scale(1.05);
+}
+
+.btn-agregar:active {
+    background-color: #003f7f;
+    transform: scale(1);
+}
+
+.btn-compartir{
+    background-color: #2e9acc; /* Verde mar */
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background-color 0.3s ease;
+}
+
+.btn-compartir:hover {
+    background-color: #0056b3;
+    transform: scale(1.05);
+}
+
+.btn-compartir:active {
+    background-color: #003f7f;
+    transform: scale(1);
+}
+
