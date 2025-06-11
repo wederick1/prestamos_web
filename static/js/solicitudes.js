@@ -3,6 +3,20 @@ document.addEventListener('DOMContentLoaded', function () {
     .then(response => response.json())
     .then(data => {
       const tbody = document.querySelector('#clientes tbody');
+
+      // Si no hay datos, muestra mensaje
+      if (data.length === 0) {
+        const row = document.createElement('tr');
+        row.innerHTML = `
+          <td colspan="6" style="text-align: center; padding: 20px; font-weight: bold; color: #666;">
+            No hay solicitudes disponibles.
+          </td>
+        `;
+        tbody.appendChild(row);
+        return; // Detiene el resto
+      }
+
+      // Si hay solicitudes, las inserta
       data.forEach(cliente => {
         const row = document.createElement('tr');
         row.innerHTML = `
@@ -14,7 +28,7 @@ document.addEventListener('DOMContentLoaded', function () {
           <td>
             <a href="http://gmail.com" target="_blank" rel="noopener noreferrer" class="ver-btn">Ver</a>
             <button class="aprobar-btn" data-id="${cliente.id}">Aprobar</button>
-            <button class="eliminar-btn" data-id="${cliente.id}"->Eliminar</button>
+            <button class="eliminar-btn" data-id="${cliente.id}">Eliminar</button>
           </td>
         `;
         tbody.appendChild(row);
@@ -59,7 +73,6 @@ function aprobarSolicitud(id) {
         .then(data => {
           if (data.success) {
             Swal.fire('Aprobado!', data.message, 'success');
-            // Eliminar la fila de la tabla
             document.querySelector(`button[data-id="${id}"]`).closest('tr').remove();
           } else {
             Swal.fire('Error!', data.message, 'error');
@@ -90,7 +103,6 @@ function eliminarSolicitud(id, btn) {
         .then(data => {
           if (data.success) {
             Swal.fire('Eliminado!', data.message, 'success');
-            // Quitar fila del DOM usando el botón pasado por parámetro
             btn.closest('tr').remove();
           } else {
             Swal.fire('Error!', data.message, 'error');
