@@ -276,7 +276,7 @@
 }
 
 .btn-compartir{
-    background-color: #2e9acc; /* Verde mar */
+    background-color: #5c5858; /* Verde mar */
     color: white;
     border: none;
     padding: 10px 15px;
@@ -287,12 +287,34 @@
 }
 
 .btn-compartir:hover {
-    background-color: #0056b3;
+    background-color: #5c58588e;
     transform: scale(1.05);
 }
 
 .btn-compartir:active {
-    background-color: #003f7f;
+    background-color: #5c58587c;
     transform: scale(1);
 }
+
+.borrar-btn {
+    background-color: #d9534f; /* Rojo tipo "danger" */
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.borrar-btn:hover {
+    background-color: #c9302c; /* Rojo más oscuro */
+    transform: scale(1.05);
+}
+
+.borrar-btn:active {
+    background-color: #ac2925; /* Rojo aún más oscuro */
+    transform: scale(1);
+}
+
 

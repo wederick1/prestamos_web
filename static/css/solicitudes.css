@@ -1,25 +1,8 @@
-
-
-.view-client-btn {
-    padding: 5px 20px;
-    background-color: #17a2b8;
-    color: white;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-    text-decoration: none;
-}
-
-.add-client-btn:hover {
-    background-color: #138496;
-}
-
 .table-container {
     margin-top: 20px;
 }
 
-.table-container button {
+.table-container{
     padding: 5px 10px;
     margin: 2px;
     border: none;
@@ -45,29 +28,73 @@
 }
 
 /* Estilos para botones */
-.aprobar-btn {
-    background-color: #28a745;
+.ver-btn {
+    background-color: #007bff; /* Azul tipo "primary" */
     color: white;
     border: none;
-    padding: 5px 10px;
-    border-radius: 4px;
+    padding: 10px 15px;
+    border-radius: 5px;
     cursor: pointer;
-    margin-left: 5px;
-}
-
-.aprobar-btn:hover {
-    background-color: #218838;
-}
-
-.view-client-btn {
-    background-color: #007bff;
-    color: white;
-    padding: 5px 10px;
-    border-radius: 4px;
+    font-size: 14px;
+    transition: background-color 0.3s ease, transform 0.3s ease;
     text-decoration: none;
 }
 
-.view-client-btn:hover {
-    background-color: #0056b3;
-    color: white;
+.ver-btn:hover {
+    background-color: #0056b3; /* Azul más oscuro */
+    transform: scale(1.05);
 }
+
+.ver-btn:active {
+    background-color: #004085; /* Azul aún más oscuro */
+    transform: scale(1);
+}
+
+.aprobar-btn {
+    background-color: #2ecc71; /* Verde tipo "success" */
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    text-decoration: none;
+}
+
+.aprobar-btn:hover {
+    background-color: #27ae60; /* Verde más oscuro */
+    transform: scale(1.05);
+}
+
+.aprobar-btn:active {
+    background-color: #1e7e34; /* Verde aún más oscuro */
+    transform: scale(1);
+}
+
+.eliminar-btn {
+    background-color: #e74c3c; /* Rojo tipo "danger" */
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    text-decoration: none;
+}
+
+.eliminar-btn:hover {
+    background-color: #c9302c; /* Rojo más oscuro */
+    transform: scale(1.05);
+}
+
+.eliminar-btn:active {
+    background-color: #ac2925; /* Rojo aún más oscuro */
+    transform: scale(1);
+}
+
+.hidden {
+    display: none;
+}
+

@@ -93,8 +93,11 @@ def actualizar_cliente(id):
     data = request.get_json() or {}
     monto = data.get('monto_solicitado')
     frecuencia = data.get('frecuencia')
-    apodo = data.get('apodo')  # <-- Extraer 'apodo'
+    apodo = data.get('apodo') 
     garantia = data.get('garantia')
+    tiempo = data.get('tiempo')
+    monto_pagar = data.get('monto_pagar')
+    print(tiempo, monto_pagar)
 
     set_clauses = []
     params = []
@@ -111,6 +114,12 @@ def actualizar_cliente(id):
     if garantia is not None:
         set_clauses.append("garantia = %s")  # <-- Agregar al UPDATE
         params.append(garantia)
+    if tiempo is not None:
+        set_clauses.append("tiempo = %s")
+        params.append(tiempo)
+    if monto_pagar is not None:
+        set_clauses.append("monto_pagar = %s")
+        params.append(monto_pagar)
 
     if not set_clauses:
         return jsonify({'success': False, 'message': 'No hay campos válidos para actualizar'}), 400
@@ -126,6 +135,28 @@ def actualizar_cliente(id):
             return jsonify({'success': False, 'message': 'Cliente no encontrado'}), 404
         conn.commit()
         return jsonify({'success': True, 'message': 'Cliente actualizado correctamente'}), 200
+
+    except Exception as e:
+        conn.rollback()
+        return jsonify({'success': False, 'error': str(e)}), 500
+
+    finally:
+        cursor.close()
+        conn.close()
+
+@bp.route('/clientes/<int:id>', methods=['DELETE'])
+def eliminar_cliente(id):
+    try:
+        conn = conectar()
+        cursor = conn.cursor()
+
+        # Intentar borrar cliente con el id dado
+        cursor.execute("DELETE FROM clientes WHERE id = %s", (id,))
+        if cursor.rowcount == 0:
+            return jsonify({'success': False, 'message': 'Cliente no encontrado'}), 404
+
+        conn.commit()
+        return jsonify({'success': True, 'message': 'Cliente eliminado correctamente'}), 200
 
     except Exception as e:
         conn.rollback()

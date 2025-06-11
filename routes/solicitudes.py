@@ -137,3 +137,20 @@ def aprobar_solicitud(id):
         return jsonify({'success': False, 'message': str(e)})
     finally:
         conn.close()
+
+@bp.route('/eliminar_solicitud/<int:id>', methods=['DELETE'])
+def eliminar_solicitud(id):
+    try:
+        conn = conectar()
+        cursor = conn.cursor()
+        cursor.execute("DELETE FROM solicitudes WHERE id = %s", (id,))
+        if cursor.rowcount == 0:
+            return jsonify({'success': False, 'message': 'Solicitud no encontrada'}), 404
+        conn.commit()
+        return jsonify({'success': True, 'message': 'Solicitud eliminada correctamente'})
+    except Exception as e:
+        conn.rollback()
+        return jsonify({'success': False, 'message': str(e)}), 500
+    finally:
+        cursor.close()
+        conn.close()

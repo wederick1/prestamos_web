@@ -108,7 +108,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 labels: ['Semana 1', 'Semana 2', 'Semana 3', 'Semana 4'],
                 datasets: [{
                     label: 'Ganancias Mensuales',
-                    data: [1000, 1500, 2000, 2500],
+                    data: [0, 0, 0, 0],
                     backgroundColor: 'rgba(0, 120, 215, 0.2)', // Color ajustado al tema
                     borderColor: 'rgba(0, 120, 215, 1)',      // Color ajustado al tema
                     borderWidth: 1

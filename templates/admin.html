@@ -59,11 +59,11 @@
             <div class="cards">
                 <div class="card">
                     <h3>Ganancias Semanales </h3>
-                    <p>$1,000</p>
+                    <p>$0</p>
                 </div>
                 <div class="card">
                     <h3>Ganancias Mensuales</h3>
-                    <p>$4,000</p>
+                    <p>$0</p>
                 </div>
                 <div class="card">
                     <h3>Solicitudes</h3>
@@ -78,7 +78,7 @@
                 <table id="example" class="display" style="width:100%">
                     <thead>
                         <tr>
-                            <th>id</th>
+                            <th class="hidden">id</th>
                             <th>Nombre</th>
                             <th>Email</th>
                             <th>Teléfono</th>
@@ -89,7 +89,7 @@
                         {% if datos %}
                             {% for dato in datos[:3] %}
                             <tr>
-                                <td>{{ dato.id }}</td>
+                                <td class="hidden">{{ dato.id }}</td>
                                 <td>{{ dato.nombre_solicitante }}</td>
                                 <td>{{ dato.correo }}</td>
                                 <td>{{ dato.telefono_solicitante }}</td>
@@ -98,7 +98,7 @@
                             {% endfor %}
                         {% else %}
                             <tr>
-                                <td colspan="5" class="no-data-message">No hay solicitudes actualmente</td>
+                                <td colspan="5" class="no-data-message">No hay solicitudes Recientes</td>
                             </tr>
                         {% endif %}
                     </tbody>

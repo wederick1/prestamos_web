@@ -22,7 +22,7 @@
         <table id="clientes" class="display" style="width:100%">
             <thead>
                 <tr>
-                    <th>ID</th>
+                    <th class="hidden">ID</th>
                     <th>Nombre</th>
                     <th>Email</th>
                     <th>Teléfono</th>
@@ -38,7 +38,7 @@
         <div id="modal" class="modal">
             <div class="modal-content">
                 <span class="close-btn">&times;</span>
-                <h1 class="modal-title">Clientes</h1>
+                <h1 class="modal-title" id="modal-title">Cliente</h1>
                 <div id="modal-body">
                     <!-- Aquí se llenarán los datos del cliente -->
                 </div>
@@ -47,53 +47,64 @@
 
         <!-- Modal Editar Cliente -->
         <div id="editarModal" class="modal-backdrop" style="display:none;">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h3>Editar Cliente</h3>
-                    <button type="button" class="close-modal" id="cerrarEditarModal">&times;</button>
+        <div class="modal-content">
+            <div class="modal-header">
+            <h3>Editar Cliente</h3>
+            <button type="button" class="close-modal" id="cerrarEditarModal">&times;</button>
+            </div>
+            <div class="modal-body">
+            <form id="editarForm">
+                <input type="hidden" id="editarClienteId" name="id">
+
+                <div class="form-group">
+                <label for="editarMonto">Monto Solicitado</label>
+                <input type="text" id="editarMonto" name="monto_solicitado" class="form-control" required>
                 </div>
-                <div class="modal-body">
-                    <form id="editarForm">
-                        <input type="hidden" id="editarClienteId" name="id">
 
-                        <div class="form-group">
-                            <label for="editarMonto">Monto Solicitado</label>
-                            <input type="text" id="editarMonto" name="monto_solicitado" class="form-control" required>
-                        </div>
-
-                        <div class="form-group">
-                            <label for="editarFrecuencia">Frecuencia de Pago</label>
-                            <select id="editarFrecuencia" name="frecuencia" class="form-control" required>
-                                <option value="">-- Selecciona --</option>
-                                <option value="Semanal">Semanal</option>
-                                <option value="Quincenal">Quincenal</option>
-                                <option value="Mensual">Mensual</option>
-                            </select>
-                        </div>
-
-                        <div class="form-group">
-                            <label for="apodo">Apodo</label>
-                            <input type="text" id="apodo" name="apodo" class="form-control">
-                        </div>
-
-                        <div class="form-group">
-                            <label for="garantia">Garantia</label>
-                            <select id="garantia" name="garantia" class="form-control">
-                                <option value="">-- Selecciona --</option>
-                                <option value="Hipotecaria">Garantía hipotecaria</option>
-                                <option value="Personal">Garantía personal</option>
-                                <option value="Prendaria">Garantía prendaria</option>
-                            </select>
-                        </div>
-
-                        <div class="modal-footer">
-                            <button type="submit" class="btn btn-primary">Guardar</button>
-                            <button type="button" class="btn btn-secondary" id="cancelarEditar">Cancelar</button>
-                        </div>
-                    </form>
+                <div class="form-group">
+                <label for="editarFrecuencia">Frecuencia de Pago</label>
+                <select id="editarFrecuencia" name="frecuencia" class="form-control" required>
+                    <option value="">-- Selecciona --</option>
+                    <option value="Semanal">Semanal</option>
+                    <option value="Quincenal">Quincenal</option>
+                    <option value="Mensual">Mensual</option>
+                </select>
                 </div>
+
+                <div class="form-group">
+                <label for="editarTiempo">Tiempo</label>
+                <input type="text" id="editarTiempo" name="tiempo" class="form-control" required>
+                </div>
+
+                <div class="form-group">
+                <label for="montopagar">Monto a pagar</label>
+                <input type="text" id="montopagar" name="monto_pagar" class="form-control" required>
+                </div>
+
+                <div class="form-group">
+                <label for="apodo">Apodo</label>
+                <input type="text" id="apodo" name="apodo" class="form-control">
+                </div>
+
+                <div class="form-group">
+                <label for="garantia">Garantia</label>
+                <select id="garantia" name="garantia" class="form-control">
+                    <option value="">-- Selecciona --</option>
+                    <option value="Hipotecaria">Garantía hipotecaria</option>
+                    <option value="Personal">Garantía personal</option>
+                    <option value="Prendaria">Garantía prendaria</option>
+                </select>
+                </div>
+
+                <div class="modal-footer">
+                <button type="submit" class="btn btn-primary">Guardar</button>
+                <button type="button" class="btn btn-secondary" id="cancelarEditar">Cancelar</button>
+                </div>
+            </form>
             </div>
         </div>
+        </div>
+
     </div>
 </main>
 {% endblock %}

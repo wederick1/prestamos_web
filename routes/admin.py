@@ -17,7 +17,7 @@ def admin():
     cursor.execute('''
         SELECT s.id, s.nombre_solicitante, s.correo, s.telefono_solicitante, s.monto_solicitado, c.nombre_solicitante AS nombre_cliente
         FROM solicitudes s
-        JOIN clientes c ON s.id = c.id
+        LEFT JOIN clientes c ON s.id = c.id
     ''')
 
     # ✅ Haz esto antes de cerrar la conexión
