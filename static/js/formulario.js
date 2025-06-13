@@ -77,21 +77,37 @@ window.addEventListener('DOMContentLoaded', () => {
     firmaInput.value = '';
     firmaModal.classList.remove('active');
   });
-  if (canvas && clearBtn) {
-    const resizeCanvas = () => {
-      const ratio = Math.max(window.devicePixelRatio || 1, 1);
-      canvas.width = canvas.offsetWidth * ratio;
-      canvas.height = canvas.offsetHeight * ratio;
-      canvas.getContext('2d').scale(ratio, ratio);
-    };
-    window.addEventListener('resize', resizeCanvas);
-    resizeCanvas();
-    signaturePad = new SignaturePad(canvas, { backgroundColor: 'rgba(255,255,255,1)' , penColor: 'rgb(0,0,0)' });
-    clearBtn.addEventListener('click', () => {
-      signaturePad.clear();
-      firmaDigitalIn.value = '';
-    });
-  }
+if (canvas && clearBtn) {
+  // 1) Redimensiona UNA sola vez
+  const ratio = Math.max(window.devicePixelRatio || 1, 1);
+  canvas.width  = canvas.offsetWidth  * ratio;
+  canvas.height = canvas.offsetHeight * ratio;
+  canvas.getContext('2d').scale(ratio, ratio);
+
+  // 2) Crea el SignaturePad con ese tamaño definitivo
+  signaturePad = new SignaturePad(canvas, {
+    backgroundColor: 'rgba(255,255,255,1)',
+    penColor: 'rgb(0,0,0)'
+  });
+
+  // 3) Cada vez que termines el trazo, vuelca el Base64 al input
+  signaturePad.onEnd = () => {
+    firmaDigitalIn.value = signaturePad.toDataURL();
+  };
+
+  // 4) Evita que el scroll táctil mueva la página al dibujar
+  canvas.style.touchAction = 'none';
+  ['touchstart','touchmove','touchend'].forEach(evt => {
+    canvas.addEventListener(evt, e => e.preventDefault(), { passive: false });
+  });
+
+  // 5) Botón para limpiar
+  clearBtn.addEventListener('click', () => {
+    signaturePad.clear();
+    firmaDigitalIn.value = '';
+  });
+}
+
 
   // ——— Cálculo ingresos ———
   const calcIngresos = () => {

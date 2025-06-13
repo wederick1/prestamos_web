@@ -2,6 +2,7 @@ from flask import Blueprint, render_template, jsonify, session
 from conexion import conectar
 from datetime import datetime
 import logging
+import mariadb
 
 bp = Blueprint('solicitudes', __name__)
 logger = logging.getLogger(__name__)
@@ -137,10 +138,38 @@ def aprobar_solicitud(id):
         conn.commit()
         return jsonify({'success': True, 'message': 'Solicitud aprobada y datos insertados en clientes'})
 
-    except Exception as e:
+    except mariadb.IntegrityError as err:
+        # Error de integridad (p.ej. duplicados)
         conn.rollback()
-        return jsonify({'success': False, 'message': str(e)})
+        msg = str(err)
+        # MariaDB lanza algo como:
+        # (1062, "Duplicate entry 'Carolina-402-206-1599-5' for key 'nombre_solicitante'")
+        if err.errno == 1062:
+            if 'nombre_solicitante' in msg:
+                return jsonify({
+                    'success': False,
+                    'message': 'Cliente ya existente'
+                }), 400
+            elif 'cedula' in msg:
+                return jsonify({
+                    'success': False,
+                    'message': 'Este documento de identidad ya existe'
+                }), 400
+        # otro duplicado o integridad distinto
+        return jsonify({'success': False, 'message': msg}), 400
+
+    except mariadb.Error as err:
+        # Cualquier otro error de MariaDB
+        conn.rollback()
+        return jsonify({'success': False, 'message': str(err)}), 500
+
+    except Exception as e:
+        # Errores inesperados de Python/Flask
+        conn.rollback()
+        return jsonify({'success': False, 'message': str(e)}), 500
+
     finally:
+        cursor.close()
         conn.close()
 
 

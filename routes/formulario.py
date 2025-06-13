@@ -585,8 +585,13 @@ def formulario():
             return jsonify({'success': True, 'redirect': '/envio'})
 
         except Exception as e:
-            current_app.logger.error(f'Error: {str(e)}')
-            return jsonify({'success': False, 'error': str(e)}), 500
+            msg = str(e)
+            if 'Network is unreachable' in msg:
+                return jsonify({
+                    'success': False,
+                    'error': 'No se pudo conectar con el servicio externo. Intente de nuevo más tarde.'
+                }), 502
+            return jsonify({'success': False, 'error': msg}), 500
 
     return render_template("formulario.html")
 
