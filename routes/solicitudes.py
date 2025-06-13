@@ -79,28 +79,32 @@ def aprobar_solicitud(id):
         # Obtener los datos de la solicitud (sin incluir el 'id')
         cursor.execute('SELECT * FROM solicitudes WHERE id = %s', (id,))
         solicitud = cursor.fetchone()
+        print(f"Solicitud obtenida: {len(solicitud)}")  # Debugging line
 
 
         if not solicitud:
             return jsonify({'success': False, 'message': 'Solicitud no encontrada'})
 
-        # Validar que se obtuvieron 45 columnas
-        if len(solicitud) != 45:
+        # Validar que se obtuvieron 47 columnas
+        if len(solicitud) != 47:
             return jsonify({
                 'success': False,
-                'error': f"Error: Se esperaban 45 columnas, se obtuvieron {len(solicitud)}"
+                'error': f"Error: Se esperaban 47 columnas, se obtuvieron {len(solicitud)}"
             }), 500
 
-        # Eliminar el 'id' de la solicitud para tener solo 42 datos
+        # Eliminar el 'id' de la solicitud para tener solo 46 datos
         datos = solicitud[1:]  # Excluye el 'id', ya que es el primer elemento (índice 0)
 
-        # Preparar valores para clientes (43 + 2 = 45)
+        # Preparar valores para clientes (46 + 2 = 48)
         valores = datos + (
-            datetime.now().strftime('%Y-%m-%d %H:%M:%S'),  # fecha_aprobacion (columna 44)
-            'activo'  # estado (columna 45)
+            datetime.now().strftime('%Y-%m-%d %H:%M:%S'),  # fecha_aprobacion (columna 47)
+            'activo'  # estado (columna 48)
         )
 
-        print(datos)  # Debugging: Verifica la longitud de los valores para asegurarte de que sea 45
+
+        print(f"Datos sin ID: {datos}")
+        print(f"Fecha aprobación: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}")
+        print(f"Total de valores: {len(valores)}")
 
         # Insertar en clientes (45 columnas explícitas)
         cursor.execute('''
@@ -116,13 +120,14 @@ def aprobar_solicitud(id):
                 ref_personal1_telefono, ref_personal2_telefono, ref_familiar1_nombre,
                 ref_familiar2_nombre, ref_familiar1_telefono, ref_familiar2_telefono,
                 ref_comercial_nombre, ref_comercial_telefono, para_que_necesita,
-                prestamos_activos, banco, firma_digital, fecha_aprobacion, estado
+                prestamos_activos, banco, firma_digital, trabajo_coordenadas, casa_coordenadas,
+                fecha_aprobacion, estado
             ) VALUES (
                 %s, %s, %s, %s, %s, %s, %s, %s, %s, %s,
                 %s, %s, %s, %s, %s, %s, %s, %s, %s, %s,
                 %s, %s, %s, %s, %s, %s, %s, %s, %s, %s,
                 %s, %s, %s, %s, %s, %s, %s, %s, %s, %s,
-                %s, %s, %s, %s, %s, %s
+                %s, %s, %s, %s, %s, %s, %s, %s
             )
         ''', valores)
 
@@ -137,6 +142,8 @@ def aprobar_solicitud(id):
         return jsonify({'success': False, 'message': str(e)})
     finally:
         conn.close()
+
+
 
 @bp.route('/eliminar_solicitud/<int:id>', methods=['DELETE'])
 def eliminar_solicitud(id):

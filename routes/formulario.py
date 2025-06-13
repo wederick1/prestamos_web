@@ -4,7 +4,7 @@ from weasyprint import HTML
 import base64
 from extensions import mail
 from conexion import conectar
-from datetime import datetime 
+from datetime import datetime
 
 bp = Blueprint('formulario', __name__)
 
@@ -24,7 +24,7 @@ def formulario():
             for campo in campos_requeridos:
                 if campo not in datos or not str(datos[campo]).strip():
                     return jsonify({'success': False, 'error': f'El campo {campo} es obligatorio'}), 400
-            
+
             # Validar y convertir la fecha
             if 'fecha_solicitud' not in datos or not datos['fecha_solicitud'].strip():
                 return jsonify({'success': False, 'error': 'El campo fecha_solicitud es obligatorio'}), 400
@@ -413,6 +413,14 @@ def formulario():
                                 <label>En que banco:</label>
                                 <span>{{ datos['banco'] }}</span>
                             </div>
+                            <div class="campo">
+                                <label>Tiene redes sociales:</label>
+                                <span>{{ datos['tiene_redes'] }}</span>
+                            </div>
+                            <div class="campo">
+                                <label>Redes Sociales:</label>
+                                <span>{{ datos['redes_sociales'] }}</span>
+                            </div>
                         </div>
                     </div>
 
@@ -424,7 +432,7 @@ def formulario():
                             <p>Firma del Solicitante</p>
                         </div>
                         <div class="firma-box">
-                            <div class="handwritten-signature">Elvis Delgado</div>
+                            <div class="handwritten-signature"></div>
                             <div class="firma-linea"></div>
                             <p>Firma del Fiador</p>
                         </div>
@@ -441,8 +449,8 @@ def formulario():
             # Enviar correo usando Flask-Mail
             msg = Message(
                 'Solicitud de Préstamo - Delgado',
-                sender='wederick02@gmail.com',
-                recipients=['wederick02@gmail.com']
+                sender='prestamosdelgadof@gmail.com',
+                recipients=['prestamosdelgadof@gmail.com']
             )
             msg.body = f"""
             Estimado administrador,
@@ -468,7 +476,7 @@ def formulario():
             try:
                 with conn.cursor() as cursor:
                     # Convertir fecha de dd/mm/yyyy a yyyy-mm-dd
-                    fecha_solicitud = datetime.strptime(datos['fecha_solicitud'], "%d/%m/%Y").strftime("%Y-%m-%d")  
+                    fecha_solicitud = datetime.strptime(datos['fecha_solicitud'], "%d/%m/%Y").strftime("%Y-%m-%d")
                     # Consulta SQL con todos los campos
                     cursor.execute("""
                         INSERT INTO solicitudes (

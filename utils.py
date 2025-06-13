@@ -18,3 +18,5 @@ def requires_role(role):
             return f(*args, **kwargs)
         return decorated_function
     return decorator
+
+

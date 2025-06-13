@@ -670,6 +670,10 @@ form {
     z-index: 1000;
   }
   
+  .modal-backdrop.active {
+  display: block;
+}
+  
   .modal-content {
     background-color: #fff;
     margin: 5% auto;

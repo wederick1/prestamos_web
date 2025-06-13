@@ -266,7 +266,7 @@
                     <div class="campo">
                         <label for="prestamos-activos">Tienes préstamos activos:</label>
                         <select id="prestamos-activos" name="prestamos-activos">
-                            <option value="0">0</option>
+                            <option value="0">No</option>
                             <option value="1">1</option>
                             <option value="2">2</option>
                         </select>
@@ -276,6 +276,22 @@
                         <label for="banco">¿En qué banco?</label>
                         <input type="text" id="banco" name="banco">
                     </div>
+
+                    <div class="campo">
+                        <label for="tiene-redes">Tiene redes sociales:</label>
+                        <select id="tiene-redes" name="tiene-redes">
+                            <option value="no">No</option>
+                            <option value="si">Sí</option>
+                        </select>
+                    </div>
+
+                    <div class="campo hidden" id="campo-redes">
+                        <label for="redes-sociales">Redes Sociales:</label>
+                        <input type="text" id="redes-sociales" name="redes-sociales" placeholder="Ej. @usuario">
+                    </div>
+
+
+
                 </div>
             </div>
 

@@ -20,9 +20,9 @@ app.config['MAIL_SERVER'] = 'smtp.gmail.com'
 app.config['MAIL_PORT'] = 587  # Usualmente 587 para TLS
 app.config['MAIL_USE_TLS'] = True
 app.config['MAIL_USE_SSL'] = False
-app.config['MAIL_USERNAME'] = 'wederick02@gmail.com'
+app.config['MAIL_USERNAME'] = 'prestamosdelgadof@gmail.com'
 app.config['MAIL_PASSWORD'] = 'bzyz uzha idyj uuvb'
-app.config['MAIL_DEFAULT_SENDER'] = 'wederick02@gmail.com'  # Remitente predeterminado
+app.config['MAIL_DEFAULT_SENDER'] = 'prestamosdelgadof@gmail.com'  # Remitente predeterminado
 
 # Inicializar Flask-Mail
 mail.init_app(app)
